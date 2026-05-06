@@ -21,6 +21,7 @@ Do not default to long page-by-page explanations. First build navigation, then d
 
 Choose the smallest workflow that matches the user's current task:
 
+- **PDF lecture intake**: first build a page map from titles/key phrases, classify the lecture archetype, then choose priority slides. Do not treat every page equally.
 - **Pre-class**: create a `Pre-class Navigation Map`; if slides are long, make roadmarks only for the most important pages.
 - **Slide/page focus**: create a `Slide Roadmark`, not a full lecture rewrite.
 - **During class**: help capture signals with `Teacher Emphasis`, `Half-understood Parking Lot`, and `Assignment-related` markers.
@@ -54,6 +55,7 @@ Never scold the user for missing the full workflow. Recover the thread and keep 
 Load these only when needed:
 
 - `references/ds-mode.md`: DS/ML/Stats-specific concept questions and anti-dependency rules.
+- `references/lecture-archetypes.md`: lecture type classification and priority-slide heuristics for real PDFs.
 - `references/templates.md`: fixed output formats for class, assignment, weekly review, and low-energy modes.
 - `references/career-bridge.md`: rules for connecting coursework to Applied AI projects, portfolio bullets, and interview language.
 - `references/examples.md`: Bagging example and style calibration.

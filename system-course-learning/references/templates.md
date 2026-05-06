@@ -7,6 +7,10 @@ Use these templates as compact defaults. Fill only the fields that are relevant 
 ```text
 ## 课前导航 / Pre-class Navigation
 
+### 0. 课件类型 / Lecture type
+- Archetype:
+- Why:
+
 ### 1. 这节课的大图
 - Topic:
 - Big question:
@@ -23,12 +27,16 @@ Use these templates as compact defaults. Fill only the fields that are relevant 
 - Page/section:
 - Why it matters:
 
-### 4. 上课重点听 / Listen for
+### 4. 先放过 / Skip for now
+- Page/section:
+- Why:
+
+### 5. 上课重点听 / Listen for
 1.
 2.
 3.
 
-### 5. 可能连接到
+### 6. 可能连接到
 - Assignment:
 - Project:
 - Interview:

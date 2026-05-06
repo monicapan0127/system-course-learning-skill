@@ -58,3 +58,37 @@
 - Interview sentence:
   I used ensemble learning concepts to understand how combining multiple unstable learners can produce a more reliable prediction workflow.
 ```
+
+## Real Lecture Archetype Examples
+
+```text
+Python Basics Lecture 1:
+- Lecture type: Tool / Coding Foundation
+- Deep roadmarks: package ecosystem, pandas/NumPy purpose, interview coding examples
+- Skip for now: every syntax detail
+- Career bridge: AI-assisted coding ownership and take-home project readiness
+```
+
+```text
+Lecture 3 Probability:
+- Lecture type: Probability / Statistics Concept Lecture
+- Deep roadmarks: conditional probability, disjoint vs independent, Bayes, distribution selection
+- Skip for now: distribution appendix unless assignment needs it
+- Career bridge: uncertainty reasoning for A/B testing, risk, and model evaluation
+```
+
+```text
+Lecture 4 Machine Learning 1:
+- Lecture type: ML Pipeline / Model Lecture
+- Deep roadmarks: ML pipeline, feature engineering, model selection tradeoffs, logistic threshold/evaluation
+- Skip for now: MLE derivation appendix unless required
+- Career bridge: Credit Risk Explainability App and model decision support
+```
+
+```text
+Lecture 7 A/B Testing:
+- Lecture type: Experimentation / Product Analytics Lecture
+- Deep roadmarks: A/B steps, sampling bias, hypothesis testing, power/sample size, before/during/after experiment analysis
+- Skip for now: generic distribution review unless needed
+- Career bridge: AI Data Analyst Agent and product experiment interview readiness
+```
