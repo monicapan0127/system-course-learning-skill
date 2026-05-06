@@ -107,6 +107,75 @@ Policy / real-world implication:
 3. What the teacher likely wants to see:
 ```
 
+## Project Reading Note
+
+```text
+## Project Reading Note
+
+### 1. Task type
+- Practice Homework / Mini Assignment / Portfolio Project / Existing Notebook:
+- Why:
+
+### 2. Business or learning objective
+-
+
+### 3. Important files / data
+| File | Role | Important? |
+| --- | --- | --- |
+| | | |
+
+### 4. Required outputs
+- Must do:
+- Optional:
+- Final deliverable:
+
+### 5. Concept / method map
+| Requirement | Concept/method | Input | Output | Risk |
+| --- | --- | --- | --- | --- |
+| | | | | |
+
+### 6. First action
+-
+
+### 7. Portfolio potential
+- Project lane:
+- README/resume hook:
+```
+
+## Analysis Framework
+
+```text
+## Analysis Framework
+
+1. Business Objective:
+2. Dataset Description:
+3. Data Overview:
+4. Data Quality Check:
+5. EDA:
+6. Segment / user profile analysis:
+7. Modeling, if useful:
+8. Evaluation:
+9. Recommendations:
+10. Limitations:
+11. Executive Summary:
+```
+
+## Notebook / Code Intake
+
+```text
+## Notebook / Code Intake
+
+- Current structure:
+- Data loading:
+- EDA:
+- Modeling / evaluation:
+- Markdown explanation:
+- Missing sections:
+- Risky code:
+- Do not change:
+- Next edit plan:
+```
+
 ## After-assignment Reverse Card
 
 ```text
@@ -192,4 +261,14 @@ Policy / real-world implication:
 
 1 project connection:
 Next repair action:
+```
+
+```text
+## Project overwhelmed mode
+
+- Important files:
+- Business objective:
+- Target variable / key metric:
+- Final deliverable:
+- Next tiny action:
 ```

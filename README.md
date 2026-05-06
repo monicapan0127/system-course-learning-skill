@@ -13,8 +13,10 @@ The skill is optimized for:
 - DS / ML / Statistics learning
 - lecture navigation instead of exhaustive pre-study
 - assignment concept mapping before solving
+- assignment/project intake before coding
 - after-class and after-assignment recovery
 - Applied AI / AI-native Data Science portfolio connections
+- Data Engineering / ETL career bridges
 - long-term personal iteration through real course use
 
 ## Structure
@@ -25,10 +27,15 @@ system-course-learning/
 ├── agents/openai.yaml
 └── references/
     ├── ds-mode.md
+    ├── assignment-project-intake.md
     ├── templates.md
     ├── career-bridge.md
     └── examples.md
+
+data_science_project_portfolio_workflow.md
 ```
+
+`data_science_project_portfolio_workflow.md` is a source note for the assignment/project intake branch. The active Codex Skill instructions live under `system-course-learning/`.
 
 ## Local Use
 
@@ -46,6 +53,10 @@ Use my System Course Learning workflow to make a pre-class navigation map for th
 
 ```text
 Use the skill to map this assignment to lecture concepts before solving.
+```
+
+```text
+Use the skill to do project intake for this assignment folder before writing code.
 ```
 
 ```text

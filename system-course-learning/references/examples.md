@@ -110,3 +110,48 @@ Lecture 16 ETL part2:
 - Skip for now: memorizing all cloud services without knowing what pipeline problem each service solves
 - Career bridge: Analytics Engineering-lite, big data processing, AI-ready data infrastructure
 ```
+
+## Assignment / Project Intake Examples
+
+```text
+Homework 3-ML:
+- Task type: Practice Homework
+- Intake focus: map each question to tested concept before answering
+- Concepts: bagging, boosting, random forest feature/row sampling, training vs testing error, information gain, logistic regression MLE
+- Guardrail: do not give only option letters; explain the trap behind each question
+```
+
+```text
+Homework 4-AB testing:
+- Task type: Practice Homework / Mini Assignment
+- Intake focus: identify which statistical test each task requires
+- Concepts: two-sample mean test, one-proportion test, chi-square independence test
+- Deliverable: edited answer file with hypotheses, test statistic, p-value, conclusion
+```
+
+```text
+Amazon Food Review:
+- Task type: Portfolio Project
+- Business objective: predict positive/negative sentiment from review summary text
+- Data: Reviews.csv, target derived from Score > 3
+- Analysis framework: text preprocessing -> TF-IDF/unigram/bigram -> logistic regression/random forest -> ROC/AUC/precision/recall/F1 -> feature importance -> business interpretation
+- Portfolio hook: NLP sentiment classification project for customer feedback analysis
+```
+
+```text
+Conversion Rate Project:
+- Task type: Portfolio Project
+- Business objective: recommend ways to improve e-commerce conversion rate
+- Data: user country, source, age, new_user, total_pages_visited, converted
+- Analysis framework: data quality -> EDA -> segment analysis -> user profiles -> predictive modeling -> product/marketing recommendations
+- Portfolio hook: business-facing conversion analysis with model-backed recommendations
+```
+
+```text
+Email Experiment Project:
+- Task type: Portfolio Project
+- Business objective: evaluate which email strategy improves open, link, and funding rates
+- Data: segment groups, email order, email events, user events, control group rates
+- Analysis framework: experiment design check -> group metrics -> treatment vs control A/B testing -> time/frequency analysis -> funnel analysis -> recommendations
+- Portfolio hook: fintech experimentation and multi-arm email campaign analysis
+```

@@ -7,10 +7,11 @@ description: Turn high-density Data Science, ML, statistics, programming, ETL, a
 
 ## Core Behavior
 
-Use this skill to convert course input into the chain:
+Use this skill to convert course and project input into the chains:
 
 ```text
 Course -> Concept -> Assignment -> Project -> Interview
+Instruction -> Task Map -> Data Map -> Analysis Plan -> Deliverable -> Portfolio
 ```
 
 Default to Chinese for understanding and reflection, while preserving English technical terms, project language, README bullets, and interview phrasing.
@@ -26,7 +27,8 @@ Choose the smallest workflow that matches the user's current task:
 - **Slide/page focus**: create a `Slide Roadmark`, not a full lecture rewrite.
 - **During class**: help capture signals with `Teacher Emphasis`, `Half-understood Parking Lot`, and `Assignment-related` markers.
 - **After class**: create an `After-class Lecture Card` and include a short `Career Bridge`.
-- **Assignment before solving**: create an `Assignment Concept Map` before giving any solution path.
+- **Assignment/project intake**: classify the input as practice homework, mini assignment, portfolio project, or existing notebook/code template; create a `Project Reading Note` before solving or coding.
+- **Assignment before solving**: create an `Assignment Concept Map` or `Project Intake Map` before giving any solution path.
 - **Assignment after finishing**: create an `After-assignment Reverse Card` and include a `Career Bridge`.
 - **Weekly review**: compress the week into a knowledge map, weak points, and project/interview connections.
 - **Low-energy recovery**: use the fallback mode instead of asking the user to complete the full workflow.
@@ -35,7 +37,7 @@ Choose the smallest workflow that matches the user's current task:
 
 - Do not create pressure that the user must understand every slide before class.
 - Do not expand every formula or proof unless the user asks or it is essential for an assignment.
-- Do not jump directly to final assignment answers; first map concepts, inputs, outputs, method, and likely mistakes.
+- Do not jump directly to final assignment answers, notebooks, or code. First map task type, business goal, files/data, required outputs, concepts, and likely mistakes.
 - Do not let AI assistance replace ownership. Always help the user explain, validate, reverse-engineer, and retell the work.
 - Do not make career connections generic. Tie them to Applied AI, AI-native Data Science, Data Engineering, DS/ML/Stats, business decision-making, risk, macro, data pipelines, or data products.
 
@@ -45,7 +47,8 @@ When the user is tired, rushed, behind, or overwhelmed:
 
 - **No time before class**: output only 3 keywords, 3 likely questions, and 1 thing to watch for.
 - **After class only**: output one `Lecture Card`.
-- **Assignment deadline mode**: output only the `Assignment Concept Map`, then solve step by step.
+- **Assignment deadline mode**: output only the task type, required deliverable, first solving step, and one risk before solving step by step.
+- **Project overwhelmed mode**: output only important files, business objective, target variable/metric, and next tiny action.
 - **Week collapsed**: output `3 stuck points + 1 project connection`.
 
 Never scold the user for missing the full workflow. Recover the thread and keep the system alive.
@@ -56,6 +59,7 @@ Load these only when needed:
 
 - `references/ds-mode.md`: DS/ML/Stats-specific concept questions and anti-dependency rules.
 - `references/lecture-archetypes.md`: lecture type classification and priority-slide heuristics for real PDFs.
+- `references/assignment-project-intake.md`: assignment, instruction, project folder, and notebook intake workflows before coding.
 - `references/templates.md`: fixed output formats for class, assignment, weekly review, and low-energy modes.
 - `references/career-bridge.md`: rules for connecting coursework to Applied AI projects, portfolio bullets, and interview language.
 - `references/examples.md`: Bagging example and style calibration.
