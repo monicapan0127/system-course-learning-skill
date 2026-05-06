@@ -11,6 +11,7 @@ Use this skill to convert course and project input into the chains:
 
 ```text
 Course -> Concept -> Assignment -> Project -> Interview
+Course -> Concept -> Retrieval -> AI Feedback -> Assignment -> Reverse Card -> Spaced Review -> Project/Interview
 Instruction -> Task Map -> Data Map -> Analysis Plan -> Deliverable -> Portfolio
 ```
 
@@ -26,17 +27,19 @@ Choose the smallest workflow that matches the user's current task:
 - **Pre-class**: create a `Pre-class Navigation Map`; if slides are long, make roadmarks only for the most important pages.
 - **Slide/page focus**: create a `Slide Roadmark`, not a full lecture rewrite.
 - **During class**: help capture signals with `Teacher Emphasis`, `Half-understood Parking Lot`, and `Assignment-related` markers.
-- **After class**: create an `After-class Lecture Card` and include a short `Career Bridge`.
+- **Retrieval-first Learning Loop**: when reviewing a lecture, assignment, or weekly material, first ask the user to retrieve from memory before summarizing. Use `Post-class Retrieval Card`, then `AI Socratic Feedback`, then a corrected `After-class Lecture Card` or `After-assignment Reverse Card`.
+- **After class**: create a retrieval-first `After-class Lecture Card`; start with the user's closed-book version when available, then add short AI feedback and a `Career Bridge`.
 - **Assignment/project intake**: classify the input as practice homework, mini assignment, portfolio project, or existing notebook/code template; create a `Project Reading Note` before solving or coding.
 - **Assignment before solving**: create an `Assignment Concept Map` or `Project Intake Map` before giving any solution path.
-- **Assignment after finishing**: create an `After-assignment Reverse Card` and include a `Career Bridge`.
-- **Weekly review**: compress the week into a knowledge map, weak points, and project/interview connections.
+- **Assignment after finishing**: create an `After-assignment Reverse Card` with concepts, mistakes, next-time first steps, interview-safe explanation, and a `Career Bridge`.
+- **Weekly review**: do not restudy all slides by default. Build a `Spaced Review Queue` from 5-10 concepts and vary retrieval contexts across formula, code, business, project, and interview use.
 - **Low-energy recovery**: use the fallback mode instead of asking the user to complete the full workflow.
 
 ## Guardrails
 
 - Do not create pressure that the user must understand every slide before class.
 - Do not expand every formula or proof unless the user asks or it is essential for an assignment.
+- Do not default to summarizing course material before the learner has tried to retrieve, explain, visualize, or solve. If the user has not provided an attempt, prompt for a small closed-book attempt first unless they are in low-energy or deadline mode.
 - Do not jump directly to final assignment answers, notebooks, or code. First map task type, business goal, files/data, required outputs, concepts, and likely mistakes.
 - Do not let AI assistance replace ownership. Always help the user explain, validate, reverse-engineer, and retell the work.
 - Do not make career connections generic. Tie them to Applied AI, AI-native Data Science, Data Engineering, DS/ML/Stats, business decision-making, risk, macro, data pipelines, or data products.
@@ -47,6 +50,7 @@ When the user is tired, rushed, behind, or overwhelmed:
 
 - **No time before class**: output only 3 keywords, 3 likely questions, and 1 thing to watch for.
 - **After class only**: output one `Lecture Card`.
+- **Too tired to review**: output only 3 retrieval prompts and 1 next tiny action.
 - **Assignment deadline mode**: output only the task type, required deliverable, first solving step, and one risk before solving step by step.
 - **Project overwhelmed mode**: output only important files, business objective, target variable/metric, and next tiny action.
 - **Week collapsed**: output `3 stuck points + 1 project connection`.
@@ -63,3 +67,12 @@ Load these only when needed:
 - `references/templates.md`: fixed output formats for class, assignment, weekly review, and low-energy modes.
 - `references/career-bridge.md`: rules for connecting coursework to Applied AI projects, portfolio bullets, and interview language.
 - `references/examples.md`: Bagging example and style calibration.
+
+## Project Maturity Files
+
+When improving this skill itself, use:
+
+- `quality-checklist.md`: output quality bar for retrieval-first learning, assignment ownership, weekly review, and low-energy recovery.
+- `real-use-log.md`: real usage feedback loop for friction, useful outputs, and next template/rule changes.
+- `research-foundations.md`: learning science and GenAI education research basis, including paper-to-workflow mapping and APA 7 references.
+- `examples/`: calibration examples for ideal outputs.

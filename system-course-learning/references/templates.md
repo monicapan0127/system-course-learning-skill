@@ -2,6 +2,11 @@
 
 Use these templates as compact defaults. Fill only the fields that are relevant to the user's material.
 
+Default style:
+- Chinese for understanding, reflection, and recovery.
+- Preserve English technical keywords, project language, README bullets, and interview phrasing.
+- Prefer retrieval-first outputs over long summaries.
+
 ## Pre-class Navigation Map
 
 ```text
@@ -60,8 +65,8 @@ Use these templates as compact defaults. Fill only the fields that are relevant 
 ## During-class Signal Capture
 
 ```text
-⭐ Teacher emphasis:
-⚠️ Half-understood parking lot:
+Teacher emphasis:
+Half-understood parking lot:
 A Assignment-related:
 P Project / portfolio connection:
 ```
@@ -73,17 +78,93 @@ G Graph / variable movement:
 Policy / real-world implication:
 ```
 
+## Post-class Retrieval Card
+
+Use this before summarizing lecture content. If the user has not written an attempt, ask for a tiny closed-book attempt first.
+
+```text
+## Post-class Retrieval Card
+
+### Closed-book attempt
+1. This lecture solves:
+2. Core method / model / statistic:
+3. Input:
+4. Process:
+5. Output:
+6. Evaluation / success check:
+7. I am still confused about:
+
+### Explain / visualize / apply
+- Explain in one plain Chinese sentence:
+- Draw or describe the structure:
+- One formula / code / business use:
+
+### Check after notes or AI feedback
+- Correct:
+- Incomplete:
+- Misunderstood:
+- Next retrieval prompt:
+```
+
+## AI Socratic Feedback
+
+Use this after the learner's attempt. Keep it short and diagnostic; do not turn it into a long lecture.
+
+```text
+## AI Socratic Feedback
+
+### What you already have
+-
+
+### Questions to repair understanding
+1.
+2.
+3.
+
+### Minimal correction
+-
+
+### Try again
+- Explain it again without looking:
+- Apply it to one new case:
+```
+
+## Mistake / Confusion Diagnosis
+
+```text
+## Mistake / Confusion Diagnosis
+
+| Item | Type | Evidence | Repair action |
+| --- | --- | --- | --- |
+| | Concept error / Logic gap / Formula misuse / Code bug / Interpretation issue / Missing assumption | | |
+
+### Next-time first step
+-
+```
+
 ## After-class Lecture Card
 
 ```text
 ## Lecture Card
 
+### 0. Closed-book retrieval first
+- My own version before reading notes:
+- I can explain:
+- I cannot explain yet:
+
+### 1. Corrected lecture understanding
 1. 今天这节课讲:
 2. 它解决的问题:
 3. 核心方法 / model / statistic:
 4. 老师最强调:
 5. 我最不懂:
 6. 作业可能会用在:
+
+### 2. AI feedback
+- Concept error:
+- Missing link:
+- Better explanation:
+- One retrieval question to retry:
 
 ## Career Bridge
 - Applied AI / DS / DE ability:
@@ -181,20 +262,42 @@ Policy / real-world implication:
 ```text
 ## Reverse Card
 
+### 0. Closed-book reverse attempt
+- What I think this assignment tested:
+- How I would solve a similar task next time:
+- Where I still feel shaky:
+
 ### Concepts actually used
 1. Concept:
    Used in:
+   Input:
+   Method:
+   Output:
+   Likely mistake:
 
 2. Concept:
    Used in:
+   Input:
+   Method:
+   Output:
+   Likely mistake:
 
 3. Concept:
    Used in:
+   Input:
+   Method:
+   Output:
+   Likely mistake:
 
 ### Stuck point
 - I got stuck at:
 - I solved it by:
 - Next time first step:
+
+### Interview-safe explanation
+- 30-second explanation:
+- What I owned:
+- How I validated the result:
 
 ## Career Bridge
 - Portfolio bullet:
@@ -240,13 +343,30 @@ Policy / real-world implication:
 - One hole to patch:
 ```
 
+## Spaced Review Queue
+
+Use this during weekly review. Do not reread all slides by default; retrieve first, then revisit only the weak source.
+
+```text
+## Spaced Review Queue
+
+| Concept | Source | Last attempt | Retrieval context 1 | Retrieval context 2 | Retrieval context 3 | Next date | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| | lecture / assignment / project | | formula / code / business / project / interview | formula / code / business / project / interview | formula / code / business / project / interview | | new / shaky / improving / solid |
+
+### This week
+- 5-10 concepts to retrieve:
+- 1 concept to restudy:
+- 1 concept to connect to project/interview:
+```
+
 ## Low-Energy Fallbacks
 
 ```text
 ## 5-minute recovery
 
 - Topic:
-- 3 keywords:
+- 3 retrieval prompts:
 - Biggest confusion:
 - Assignment/project connection:
 - Next tiny action:
