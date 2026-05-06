@@ -1,0 +1,4 @@
+interface:
+  display_name: "System Course Learning"
+  short_description: "Turn DS courses into Applied AI learning assets."
+  default_prompt: "Use this skill to convert lecture slides, notes, and assignments into DS learning maps, concept cards, and Applied AI career bridges."

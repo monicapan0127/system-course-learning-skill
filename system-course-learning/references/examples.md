@@ -1,0 +1,60 @@
+# Examples
+
+## Bagging Slide Roadmark
+
+```text
+## Slide Roadmark
+
+- 一句话:
+  Bagging 是一种 ensemble learning 方法，用 bootstrap 抽出多个 training sets，训练多个 base learners，最后 voting / averaging。
+
+- 先看哪里:
+  先看数据如何被抽成多个 bootstrap samples，再看多个模型如何合并 prediction。
+
+- 3 keywords:
+  bootstrap / with replacement / aggregation
+
+- 最低掌握标准:
+  能说出流程：sample -> train multiple models -> predict -> vote/average。
+
+- 可以先放过:
+  复杂公式推导可以先放过，先抓住 `H(x)` 是 final ensemble model，`h_t(x)` 是第 t 个 base learner。
+
+- 最可能卡住:
+  为什么 sampling with replacement 可以制造不同 training sets，以及为什么它主要降低 variance。
+
+- Career Bridge:
+  Bagging connects to model stability and ensemble prediction. It is useful for explaining how a risk or prediction system can reduce instability compared with a single decision tree.
+```
+
+## Bagging Lecture Card
+
+```text
+## Lecture Card
+
+1. 今天这节课讲:
+   Bagging and ensemble learning.
+
+2. 它解决的问题:
+   单个模型，尤其是 decision tree，容易 high variance / unstable。
+
+3. 核心方法:
+   Bootstrap multiple datasets, train multiple base learners, then aggregate predictions.
+
+4. 老师最强调:
+   Bootstrap with replacement + voting/averaging.
+
+5. 我最不懂:
+   Why variance decreases when models are averaged.
+
+6. 作业可能会用在:
+   Compare single tree vs bagging model performance and explain overfitting/stability.
+
+## Career Bridge
+- Applied AI / DS ability:
+  Explain model stability and ensemble evaluation.
+- Project connection:
+  Credit Risk Explainability App, if comparing single classifier vs ensemble classifier.
+- Interview sentence:
+  I used ensemble learning concepts to understand how combining multiple unstable learners can produce a more reliable prediction workflow.
+```
