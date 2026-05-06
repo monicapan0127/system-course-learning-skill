@@ -150,6 +150,51 @@ Avoid:
 - treating A/B testing as only formulas
 - missing the product decision and metric-design layer
 
+## Archetype 5: Data Engineering / ETL Lecture
+
+Examples: ETL, ELT, Airflow orchestration, Spark, data lake, cloud data architecture, analytics engineering.
+
+Typical pages:
+
+- ETL vs ELT
+- batch vs streaming
+- pipeline layers: source, staging, transformation, sink
+- schema, partitioning, and storage formats
+- data quality, idempotency, retries, monitoring
+- Airflow DAGs, operators, sensors, XCom, dynamic task mapping
+- Spark, PySpark, DataFrame, RDD, transformations/actions
+- shuffles, Spark SQL optimization, partition pruning
+- data lake zones, Delta Lake, Iceberg, Hudi
+- AWS/GCP data services, governance, security
+- cloud-native pipeline examples
+
+Priority slides:
+
+- architecture and tradeoff pages
+- ETL/ELT and batch/streaming decision pages
+- reliability pages: idempotency, retries, monitoring, backfills
+- orchestration pages: Airflow DAG anatomy, scheduling, XCom, dynamic task mapping
+- Spark performance pages: shuffles, broadcast joins, partitioning, predicate pushdown
+- data lake and table format pages
+- cloud-native pipeline example pages
+
+Career bridge:
+
+- Data Pipeline / ETL Portfolio
+- Analytics Engineering-lite
+- AI/RAG Data Infrastructure
+- reliable data foundations for downstream analytics, ML, and Applied AI products
+
+Avoid:
+
+- memorizing every cloud service name without understanding what pipeline problem it solves
+- treating ETL as isolated infrastructure with no downstream analytics or AI product connection
+
+Subtypes:
+
+- **ETL Fundamentals + Airflow Orchestration**: prioritize ETL/ELT, batch vs streaming, pipeline architecture, schema/partitioning, idempotency, Airflow DAGs, retries, XCom, monitoring, CI/CD.
+- **Big Data Processing + Cloud Data Architecture**: prioritize Spark transformations/actions, shuffles, Spark SQL optimization, data lake zones, Delta/Iceberg/Hudi, AWS/GCP services, governance, cloud-native pipeline design.
+
 ## Priority Output Rule
 
 For any real lecture, output:

@@ -92,3 +92,21 @@ Lecture 7 A/B Testing:
 - Skip for now: generic distribution review unless needed
 - Career bridge: AI Data Analyst Agent and product experiment interview readiness
 ```
+
+```text
+Lecture 15 ETL part1:
+- Lecture type: Data Engineering / ETL Lecture
+- Subtype: ETL Fundamentals + Airflow Orchestration
+- Deep roadmarks: ETL vs ELT, batch vs streaming, pipeline architecture, schema/partitioning, idempotency, Airflow DAGs, scheduling, retries, XCom, dynamic task mapping, monitoring, CI/CD
+- Skip for now: memorizing every Airflow operator name unless it appears in an assignment or interview case
+- Career bridge: Data Pipeline / ETL Portfolio, Airflow orchestration, AI/RAG data ingestion readiness
+```
+
+```text
+Lecture 16 ETL part2:
+- Lecture type: Data Engineering / ETL Lecture
+- Subtype: Big Data Processing + Cloud Data Architecture
+- Deep roadmarks: Spark DataFrame vs RDD, transformations vs actions, shuffles, Spark SQL optimization, data lake zones, Delta/Iceberg/Hudi, AWS/GCP data stack, governance, cloud-native pipeline example
+- Skip for now: memorizing all cloud services without knowing what pipeline problem each service solves
+- Career bridge: Analytics Engineering-lite, big data processing, AI-ready data infrastructure
+```

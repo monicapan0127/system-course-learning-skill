@@ -1,6 +1,6 @@
 ---
 name: system-course-learning
-description: Turn high-density Data Science, ML, statistics, and programming course materials into sustainable learning assets and Applied AI career assets. Use when the user uploads or references lecture slides, readings, class notes, assignment specs, code projects, weekly review notes, exam review materials, or asks to pre-study, review, map concepts, make listening roadmarks, connect coursework to projects, or use their system course learning workflow.
+description: Turn high-density Data Science, ML, statistics, programming, ETL, and data engineering course materials into sustainable learning assets and Applied AI/Data Engineering career assets. Use when the user uploads or references lecture slides, readings, class notes, assignment specs, code projects, weekly review notes, exam review materials, or asks to pre-study, review, map concepts, make listening roadmarks, connect coursework to projects, or use their system course learning workflow.
 ---
 
 # System Course Learning
@@ -37,7 +37,7 @@ Choose the smallest workflow that matches the user's current task:
 - Do not expand every formula or proof unless the user asks or it is essential for an assignment.
 - Do not jump directly to final assignment answers; first map concepts, inputs, outputs, method, and likely mistakes.
 - Do not let AI assistance replace ownership. Always help the user explain, validate, reverse-engineer, and retell the work.
-- Do not make career connections generic. Tie them to Applied AI, AI-native Data Science, DS/ML/Stats, business decision-making, risk, macro, or data products.
+- Do not make career connections generic. Tie them to Applied AI, AI-native Data Science, Data Engineering, DS/ML/Stats, business decision-making, risk, macro, data pipelines, or data products.
 
 ## Low-Energy Fallbacks
 

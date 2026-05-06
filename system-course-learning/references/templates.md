@@ -39,6 +39,7 @@ Use these templates as compact defaults. Fill only the fields that are relevant 
 ### 6. 可能连接到
 - Assignment:
 - Project:
+- Data Engineering hook:
 - Interview:
 ```
 
@@ -85,8 +86,9 @@ Policy / real-world implication:
 6. 作业可能会用在:
 
 ## Career Bridge
-- Applied AI / DS ability:
+- Applied AI / DS / DE ability:
 - Project connection:
+- DE connection:
 - Interview sentence:
 ```
 
@@ -128,6 +130,7 @@ Policy / real-world implication:
 ## Career Bridge
 - Portfolio bullet:
 - README sentence:
+- Data Engineering hook:
 - Interview sentence:
 ```
 
@@ -162,6 +165,7 @@ Policy / real-world implication:
 - AI Data Analyst Agent:
 - RAG Macro Assistant:
 - Credit Risk Explainability App:
+- Data Engineering / ETL Pipeline:
 
 ### Next week repair
 - One hole to patch:
