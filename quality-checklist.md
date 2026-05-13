@@ -15,8 +15,19 @@ Use this checklist to judge whether a System Course Learning output is actually 
 ## Lecture Output Check
 
 - It avoids a long page-by-page rewrite.
-- It includes a `Post-class Retrieval Card` or retrieval-first `Lecture Card`.
-- It has one plain-language explanation.
+- For pre-class, it teaches in plain language before checking recall.
+- For pre-class, it does more than paraphrase slide headings or the table of contents.
+- For pre-class, it uses declarative explanation, not repeated rhetorical questions.
+- For pre-class, it asks zero questions unless the user explicitly requested active recall or quiz mode.
+- For pre-class, any important question mentioned by the slide or assistant is answered immediately.
+- When the user is distressed, it validates briefly and continues teaching the next tiny concept without asking anything.
+- For PDF pre-class, it gives a useful starting explanation even when extraction is incomplete or visual inspection is still needed.
+- For image-heavy PDF pages, it renders and visually inspects priority pages when local tooling is available.
+- It labels pages as `Text-extracted`, `Visually inspected`, or `Uncertain / needs screenshot`.
+- It is not Chinese-heavy: core concepts include English terms and a reusable `Simple English` sentence.
+- Job-relevant concepts include a short `Interview English` sentence without becoming all-English teaching.
+- It includes concrete examples and a `Minimum to remember` line for difficult concepts.
+- For after-class, it includes a `Post-class Retrieval Card` or retrieval-first `Lecture Card`.
 - It has one visual, formula, code, business, or project transfer prompt.
 - It names one confusion to repair next.
 
@@ -44,6 +55,15 @@ Use this checklist to judge whether a System Course Learning output is actually 
 ## Failure Signals
 
 - The output is mostly a summary.
+- The pre-class output is mostly a table of contents or "this section will cover..." with no concept explanation.
+- The pre-class output contains many question marks or question lists that make the learner feel tested instead of guided.
+- The pre-class output asks a check question after the user has said they are overwhelmed, stuck, upset, or not being helped.
+- The pre-class output says a question is important but leaves it unanswered.
+- The PDF pre-class turn spends the whole response on tool/extraction issues and gives no usable learning entry point.
+- It explains image-heavy slides from extracted text alone when visual rendering was available.
+- It says visual inspection is needed but never attempts rendering or asks for a specific screenshot.
+- It gives long Chinese-only explanations for concepts the learner needs to output in English.
+- It saves English phrasing only for the end, making the learner understand in Chinese but unable to say it in English.
 - The user cannot explain the concept after reading it.
 - It creates more tasks than the user can do today.
 - It forces a career bridge that does not fit.
