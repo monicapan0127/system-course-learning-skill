@@ -30,6 +30,16 @@ Avoid: long Chinese paragraphs with only a tiny English phrase at the end
 
 Do not teach new concepts in all-English when the user is still trying to understand the lecture. Also do not bury the learner in Chinese-only explanations. English is the output language, so every core concept should be paired with a short reusable English version.
 
+Use this hard bilingual ratio during pre-class teaching unless the user asks otherwise:
+
+```text
+Chinese scaffold: 1-3 short sentences per concept
+English terms: introduced inside the Chinese explanation
+Simple English: 1 reusable sentence immediately after the explanation
+Interview English: 1 sentence only when job-relevant
+Avoid: long Chinese blocks, all-English teaching blocks, or saving English until the end
+```
+
 For Pre-class teaching, use plain-language walkthrough style rather than table-of-contents paraphrase. Each explained slide/chunk should feel like a patient tutor talking the learner through the idea:
 
 ```text
@@ -44,6 +54,16 @@ Minimum to remember:
 ```
 
 Avoid outputs that only restate headings such as "first concept, then application, then interview". A useful pre-class explanation should make the learner understand the concept without needing to inspect the slide alone.
+
+Use a strict pre-class chunk budget:
+
+```text
+Default chunk: 1-3 slides/pages
+Dense concept chunk: 1 concept or 1 diagram
+Maximum per response: 3 core concepts
+Do not expand into a full-topic note unless the user explicitly asks for complete notes
+End by naming the next tiny chunk, not by opening a new menu of choices
+```
 
 In Pre-class teaching, default to zero questions. Avoid question-heavy prose. Rhetorical questions can still feel like a quiz when the learner is trying to enter the material. Prefer declarative teaching language:
 
@@ -75,10 +95,33 @@ Interviews test it because...
 
 At the start of each new learning task, briefly orient the user before doing the work:
 
-- Say what this skill can help with in 2-4 sentences: pre-class navigation, after-class review, active recall, answer diagnosis, Chinese-to-English explanation, assignment mapping, project intake, weekly review, and low-energy recovery.
+- Say what this skill can help with in 1-2 short sentences only when it is genuinely useful. Do not recite the whole capability list during a live learning task.
 - Declare the current mode, such as `Pre-class mode`, `After-class mode`, `Assignment Concept Map mode`, `Project Intake mode`, `Weekly Review mode`, or `Low-energy recovery mode`.
 - State the default output destination: chat-only unless the user explicitly asks to save, write, generate a file, or record to a log.
 - Do not create long cards, logs, or files before the user has confirmed that they want a saved artifact.
+- When the user says "继续", "接着", "讲给我听", "我还没学", "预习", or similar live-use phrases, skip the capability overview and continue the learning flow directly.
+
+## Use-Time Priority Rules
+
+When the user is actively using the skill to learn, the immediate learning need beats the generic workflow:
+
+```text
+If user says pre-study / 预习 / haven't learned / take me through it:
+  Use Pre-class teaching first. Explain. Do not retrieve first.
+
+If user says continue / 继续 / 接着:
+  Continue the previous mode, page range, chunk size, and bilingual style.
+  Do not restart with a new navigation map unless the user explicitly asks for a new map or reset.
+
+If user sounds overwhelmed:
+  Use comfort-first pre-class mode.
+  No check questions, no active recall, no menus.
+
+If user asks for review after class or says they already learned it:
+  Use retrieval-first mode.
+```
+
+Pre-class mode overrides retrieval-first rules. Retrieval-first is for review, diagnosis, weekly review, and after-class consolidation, not for the first pass through unfamiliar material.
 
 ## File Writing Rule
 
@@ -140,12 +183,14 @@ NODE_PATH=<bundled node_modules> <bundled node> system-course-learning/scripts/r
 
 Prefer rendering only the pages needed for the next teaching chunk, not the whole deck. If rendering fails, clearly mark the page as `Uncertain / needs screenshot`, then continue teaching the pages that are visible or text-extracted.
 
+Hard rule: if the next teaching chunk depends on a diagram, table, formula, screenshot, chart, or slide with weak extracted text, do not explain the visual content from text alone when rendering is available. Render and inspect that priority page first, then teach it.
+
 ## Workflow Selection
 
 Choose the smallest workflow that matches the user's current task:
 
 - **PDF lecture intake**: first build a risk-aware page map from titles/key phrases, classify the lecture archetype, flag extraction/visual risks, then choose priority slides. Do not treat every page equally. In Pre-class mode, do not spend the whole turn on extraction; produce a first teaching chunk even if the page map is incomplete.
-- **Pre-class**: create a `Pre-class Navigation Map`; if slides are long, make roadmarks only for the most important pages. After the map, default to guided explanation, not testing. Walk through the selected pages in small chunks: explain what each page is doing, why it matters, and the minimum class-ready takeaway before asking anything.
+- **Pre-class**: create a compact `Pre-class Navigation Map` only once per lecture or when the structure is unclear; if the user says "continue", do not recreate it. After the map, default to guided explanation, not testing. Walk through 1-3 pages or at most 3 core concepts: explain what each page is doing, why it matters, and the minimum class-ready takeaway before asking anything.
 - **Pre-class bilingual bridge**: explain the concept with a short Chinese scaffold, keep English terms such as `control group`, `treatment group`, `p-value`, and `statistically significant`, then give a reusable `Simple English` sentence for every core concept. For job-relevant concepts, add one `Interview English` sentence. Do not require the learner to produce English during pre-class unless they ask.
 - **Guided pre-class walkthrough**: when the user says they have not started, feel stuck, need you to "take me through it", or worry that skipped slides will leave gaps, continue teaching the next slide/chunk directly. Do not ask check questions unless the user explicitly wants active recall.
 - **Comfort-first pre-class mode**: when the user says "呜呜", "崩溃", "好难", "不好", "快帮帮我", or similar distress signals, stop using questions entirely. First validate the feeling in one short sentence, then teach the next tiny piece with concrete examples and a `Minimum to remember`.
@@ -204,7 +249,7 @@ Load these only when needed:
 
 When improving this skill itself, use:
 
-- `quality-checklist.md`: output quality bar for retrieval-first learning, assignment ownership, weekly review, and low-energy recovery.
+- `references/quality-checklist.md`: output quality bar for retrieval-first learning, assignment ownership, weekly review, and low-energy recovery.
 - `real-use-log.md`: real usage feedback loop for friction, useful outputs, and next template/rule changes.
 - `research-foundations.md`: learning science and GenAI education research basis, including paper-to-workflow mapping and APA 7 references.
 - `examples/` and `references/golden-examples/`: calibration examples for ideal outputs.
