@@ -3,9 +3,16 @@
 Use these templates as compact defaults. Fill only the fields that are relevant to the user's material.
 
 Default style:
-- Chinese for understanding, reflection, and recovery.
-- Preserve English technical keywords, project language, README bullets, and interview phrasing.
-- Prefer retrieval-first outputs over long summaries.
+- Concise Chinese for understanding, reflection, and recovery.
+- English for the output spine: technical keywords, reusable concept sentences, project language, README bullets, and interview phrasing.
+- Avoid Chinese-heavy notes. For each core concept, include a short `Simple English` line; for job-relevant concepts, include `Interview English`.
+- Pre-class bilingual ratio: 1-3 short Chinese sentences per concept, English terms inside the explanation, then one reusable `Simple English` sentence immediately after.
+- Pre-class chunk budget: default to 1-3 pages, or 1 dense diagram/formula/concept; never exceed 3 core concepts in one response unless the user asks for complete notes.
+- For pre-class, prefer plain-language guided explanation over retrieval-first prompts or heading paraphrases.
+- For pre-class, prefer declarative explanation over question-heavy prose. Default to zero questions unless the user explicitly asks for active recall, quiz mode, or checking.
+- For pre-class, if the slide or outline contains important questions, answer them immediately instead of showing them as prompts.
+- For "continue" / "继续", continue the previous mode, page range, chunk size, and bilingual style. Do not restart the lecture map unless the user explicitly asks for a new map or reset.
+- For after-class review, assignment reverse cards, and weekly review, prefer retrieval-first outputs over long summaries.
 
 ## Pre-class Navigation Map
 
@@ -48,6 +55,46 @@ Default style:
 - Interview:
 ```
 
+## Pre-class PDF Startup
+
+Use this when a PDF is still being extracted, has garbled text, has a Chinese/Unicode path issue, or contains many image-heavy pages. Do not wait for perfect extraction before teaching.
+
+```text
+## Pre-class Startup
+
+What I can see so far:
+- Pages:
+- Rough sections:
+- Text-extracted:
+- Visually uncertain:
+
+Start here:
+- Page 1:
+- Page 2:
+- Page 3:
+
+Minimum to remember:
+-
+
+Next:
+I will continue with the next small visible chunk while keeping uncertain pages marked.
+```
+
+## Visual Inspection Note
+
+Use this after rendering priority PDF pages to PNG and opening the images.
+
+```text
+Visual inspection status:
+- Page X: Visually inspected. What the slide shows:
+- Page Y: Text-extracted only. Visual risk:
+- Page Z: Uncertain / needs screenshot. Why:
+
+Teaching decision:
+- I will explain pages X-Y now.
+- I will not guess page Z until a screenshot or render is available.
+```
+
 ## Slide Roadmark
 
 ```text
@@ -60,6 +107,92 @@ Default style:
 - 可以先放过:
 - 最可能卡住:
 - Career Bridge:
+```
+
+## Pre-class Plain-language Walkthrough
+
+Use this when the user asks you to take them through a lecture, says they have not started, feels stuck, or says a navigation map is too shallow. Explain 1-3 pages per response depending on density, or 1 dense diagram/formula/concept. Keep the prose declarative; avoid repeated "what/why/how" questions. Do not include check questions unless the user asks to be tested.
+
+```text
+## Page X: [slide title / topic]
+
+This page is really saying:
+-
+
+If the slide lists questions, answer them:
+-
+
+中文托底:
+-
+
+Concrete example:
+-
+
+Simple English:
+-
+
+Interview English, if useful:
+-
+
+Why it matters:
+-
+
+Minimum to remember:
+- Chinese:
+- English:
+
+Next:
+I will continue with pages X-Y.
+```
+
+## Continue Rule
+
+Use this when the user says "continue", "继续", "接着", or sends a short continuation message.
+
+```text
+Continue from:
+- Previous mode:
+- Previous page/chunk:
+- Next page/chunk:
+
+Teaching rule:
+- Keep the same bilingual style.
+- Do not recreate the navigation map.
+- Do not ask check questions unless the previous mode was explicit quiz/retrieval.
+- Explain the next 1-3 pages or the next dense concept.
+
+Next:
+I will continue with the following tiny chunk after this.
+```
+
+## Comfort-first Pre-class Walkthrough
+
+Use this when the user sounds overwhelmed, stuck, upset, or says the previous output was not helpful. No questions in this mode.
+
+```text
+先稳住:
+- 这部分确实抽象，我们先只吃一小口。
+
+## Page X: [topic]
+
+This page is really saying:
+-
+
+In plain Chinese:
+-
+
+Tiny example:
+-
+
+Simple English:
+-
+
+Minimum to remember:
+- Chinese:
+- English:
+
+Next:
+I will continue with the next small piece.
 ```
 
 ## During-class Signal Capture

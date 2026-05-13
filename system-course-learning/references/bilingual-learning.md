@@ -4,7 +4,9 @@ Use this reference when the learner understands a concept in Chinese or mixed Ch
 
 ## Purpose
 
-Treat Chinese as the understanding language and English as the output language. The assistant should not replace the learner's ownership by writing polished answers from scratch before the learner tries. Instead, use the learner's own attempt as the raw material, then repair the concept and upgrade the expression.
+Treat Chinese as the understanding support layer and English as the output language. The goal is not Chinese notes with a little English at the end. The goal is a bilingual ladder: short Chinese explanation, English terms, reusable English sentence, and interview-safe English when relevant.
+
+When the learner is pre-studying, do not wait until the end to introduce English. Pair each core concept with a short English sentence they can reuse later.
 
 ## Default Flow
 
@@ -15,9 +17,9 @@ Treat Chinese as the understanding language and English as the output language. 
    - Missing link
    - Misused English term
    - Over-vague explanation
-3. Give a corrected Chinese version.
+3. Give a concise corrected Chinese version.
 4. Give a simple academic English version.
-5. Give an interview-safe English version only when useful.
+5. Give an interview-safe English version when the concept is job-relevant.
 6. Ask the learner to retell the answer in their own words.
 
 ## Feedback Shape
@@ -94,5 +96,7 @@ Main difference:
 - Do not shame imperfect English.
 - Do not turn every answer into a long model answer.
 - Do not polish away the learner's own reasoning.
-- Do not skip the Chinese repair step when the concept is shaky.
+- Do not skip the Chinese support step when the concept is shaky.
+- Do not produce long Chinese-only explanations for concepts that the learner will need in assignments or interviews.
+- Do not save English phrasing only for the final summary; add reusable English throughout.
 - Do not make interview phrasing sound grander than the learner's actual work.
