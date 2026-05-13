@@ -1,6 +1,6 @@
 # System Course Learning Skill
 
-Current version: **v1.2 System Course Learning Skill**
+Current version: **v1.3 System Course Learning Skill**
 
 This repository contains a personal Codex Skill for turning high-density Data Science, Machine Learning, Statistics, NLP, Deep Learning, programming, ETL, and Data Engineering coursework into sustainable learning assets and Applied AI career assets.
 
@@ -25,6 +25,16 @@ The skill is optimized for:
 - real iteration through `real-use-log.md`
 
 ## What's New
+
+### v1.3: Robust PDF Text Extraction
+
+PDF intake now has a Node-based text extraction helper:
+
+```text
+system-course-learning/scripts/extract_pdf_text.mjs
+```
+
+This avoids treating a missing Python `fitz` / `PyMuPDF` package as a material problem. It also handles OneDrive, spaces, and non-ASCII paths more safely by taking the PDF path as a normal command argument. When text extraction is weak or garbled, the workflow flags the page for visual inspection instead of treating it as empty.
 
 ### v1.2: PDF Intake Safety Protocol
 
@@ -71,6 +81,9 @@ v1.1 added:
 system-course-learning/
 |-- SKILL.md
 |-- agents/openai.yaml
+|-- scripts/
+|   |-- extract_pdf_text.mjs
+|   `-- render_pdf_pages.mjs
 `-- references/
     |-- assignment-project-intake.md
     |-- bilingual-learning.md

@@ -141,6 +141,9 @@ Minimum to remember:
 - Chinese:
 - English:
 
+60-second self-explain:
+- Without notes, say the concept in one sentence. Mixed Chinese-English is okay.
+
 Next:
 I will continue with pages X-Y.
 ```
@@ -260,6 +263,29 @@ Use this after the learner's attempt. Keep it short and diagnostic; do not turn 
 ### Try again
 - Explain it again without looking:
 - Apply it to one new case:
+
+### My fix after feedback
+- In my own words, the correction is:
+
+### No-AI transfer check
+- Do this without looking at the AI answer:
+```
+
+## Claim / Evidence / Uncertainty
+
+Use this only for high-risk claims: papers, formulas, statistical conclusions, assignment requirements, model-performance claims, or any point where a smooth explanation could hide uncertainty.
+
+```text
+## Claim / Evidence / Uncertainty
+
+Claim:
+-
+
+Evidence:
+-
+
+Uncertainty:
+-
 ```
 
 ## Mistake / Confusion Diagnosis
@@ -299,6 +325,12 @@ Use this after the learner's attempt. Keep it short and diagnostic; do not turn 
 - Better explanation:
 - One retrieval question to retry:
 
+### 3. My fix after feedback
+- In my own words, the correction is:
+
+### 4. No-AI transfer check
+- Do this without looking at the AI answer:
+
 ## Career Bridge
 - Applied AI / DS / DE ability:
 - Project connection:
@@ -319,6 +351,7 @@ Use this after the learner's attempt. Keep it short and diagnostic; do not turn 
 1. First step:
 2. Slides to revisit:
 3. What the teacher likely wants to see:
+4. No-AI first step before reading a solution:
 ```
 
 ## Project Reading Note
@@ -432,6 +465,12 @@ Use this after the learner's attempt. Keep it short and diagnostic; do not turn 
 - What I owned:
 - How I validated the result:
 
+### My fix after feedback
+- In my own words, the correction is:
+
+### No-AI transfer check
+- Do this without looking at the AI answer:
+
 ## Career Bridge
 - Portfolio bullet:
 - README sentence:
@@ -491,6 +530,10 @@ Use this during weekly review. Do not reread all slides by default; retrieve fir
 - 5-10 concepts to retrieve:
 - 1 concept to restudy:
 - 1 concept to connect to project/interview:
+
+### Low-energy downgrade
+- 3 retrieval prompts:
+- Retry date:
 ```
 
 ## Low-Energy Fallbacks
@@ -500,6 +543,7 @@ Use this during weekly review. Do not reread all slides by default; retrieve fir
 
 - Topic:
 - 3 retrieval prompts:
+- Retry date:
 - Biggest confusion:
 - Assignment/project connection:
 - Next tiny action:
