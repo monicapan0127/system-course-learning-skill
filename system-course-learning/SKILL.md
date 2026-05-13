@@ -198,6 +198,7 @@ Load these only when needed:
 - `references/templates.md`: fixed output formats for class, assignment, weekly review, and low-energy modes.
 - `references/career-bridge.md`: rules for connecting coursework to Applied AI projects, portfolio bullets, and interview language.
 - `references/examples.md`: Bagging example and style calibration.
+- `references/golden-examples/lecture7-ab-testing-preclass.md`: ideal Lecture 7 A/B Testing pre-class walkthrough calibrated for plain-language teaching, zero-question mode, concise Chinese support, and reusable English output.
 
 ## Project Maturity Files
 
@@ -206,4 +207,4 @@ When improving this skill itself, use:
 - `quality-checklist.md`: output quality bar for retrieval-first learning, assignment ownership, weekly review, and low-energy recovery.
 - `real-use-log.md`: real usage feedback loop for friction, useful outputs, and next template/rule changes.
 - `research-foundations.md`: learning science and GenAI education research basis, including paper-to-workflow mapping and APA 7 references.
-- `examples/`: calibration examples for ideal outputs.
+- `examples/` and `references/golden-examples/`: calibration examples for ideal outputs.

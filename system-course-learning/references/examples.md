@@ -91,6 +91,7 @@ Lecture 7 A/B Testing:
 - Deep roadmarks: A/B steps, sampling bias, hypothesis testing, power/sample size, before/during/after experiment analysis
 - Skip for now: generic distribution review unless needed
 - Career bridge: AI Data Analyst Agent and product experiment interview readiness
+- Golden pre-class sample: `references/golden-examples/lecture7-ab-testing-preclass.md`
 ```
 
 ```text
