@@ -7,12 +7,40 @@ Use this reference after extracting text or page titles from a real lecture PDF.
 For a lecture PDF, first make a compact page map:
 
 ```text
-Page -> title/key phrase -> likely function
+Page -> extracted signal -> visual risk -> likely function -> action
 ```
 
 Then classify the lecture type and select only priority pages for roadmarks.
 
-If text extraction misses diagrams, formulas, or images, say that visual inspection may be needed for those pages.
+If text extraction misses diagrams, formulas, tables, screenshots, code images, or scanned handwriting, do not infer that the page is empty or unimportant. Mark those pages as `needs visual inspection`.
+
+Use these labels:
+
+- `Text-extracted`: enough readable text exists to summarize or roadmark.
+- `Visually inspected`: page image was inspected before explanation.
+- `Uncertain / needs screenshot`: extracted text is too weak and visual inspection is unavailable.
+
+For `Uncertain / needs screenshot`, ask only for screenshots of priority pages, not the whole PDF.
+
+## Extraction Risk Signals
+
+Flag a page when any of these appear:
+
+- extracted text is nearly empty
+- extracted text is garbled or has broken encoding
+- slide contains mostly diagrams, plots, screenshots, formulas, tables, or code images
+- page title is missing but neighboring slides suggest it may be substantive
+- model output would require reading visual layout, arrows, axes, equations, or code indentation
+
+Risk-aware output should include:
+
+```text
+Priority pages:
+- Page:
+  Signal:
+  Risk:
+  Next action: explain from text / inspect image / ask for screenshot
+```
 
 ## Archetype 1: Tool / Coding Foundation
 

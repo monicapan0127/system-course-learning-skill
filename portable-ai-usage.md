@@ -21,6 +21,8 @@ For a lightweight setup, upload or paste:
 system-course-learning/SKILL.md
 system-course-learning/references/templates.md
 system-course-learning/references/ds-mode.md
+system-course-learning/references/lecture-archetypes.md
+system-course-learning/references/bilingual-learning.md
 system-course-learning/references/assignment-project-intake.md
 system-course-learning/references/career-bridge.md
 quality-checklist.md
@@ -33,7 +35,10 @@ For calibration examples, also upload:
 examples/bagging-after-class.md
 examples/logistic-regression-assignment-reverse.md
 examples/weekly-spaced-review.md
+lecture6-after-class-card.md
 ```
+
+Keep `real-use-log.md` local unless you intentionally want the assistant to learn from real usage friction.
 
 ## Universal Starter Prompt
 
@@ -44,11 +49,14 @@ Use the uploaded System Course Learning instructions as the source of truth.
 Default to Chinese for understanding and reflection, while preserving English technical terms.
 
 Core rules:
-1. Do not summarize first if I am reviewing. Ask me for a small closed-book retrieval attempt first.
-2. For lectures, create navigation maps and retrieval cards, not long page-by-page explanations.
-3. For assignments, map concepts before solving.
-4. After assignments, create a Reverse Card with concepts, mistakes, next-time first step, and interview-safe explanation.
-5. When I am tired or rushed, reduce scope to 3 retrieval prompts and 1 next tiny action.
+1. Start by briefly telling me what you can help with, then declare the current workflow mode.
+2. Default to chat-only output. Do not save, write, or generate files unless I explicitly ask.
+3. Do not summarize first if I am reviewing. Ask me for a small closed-book retrieval attempt first.
+4. For lectures, create navigation maps and retrieval cards, not long page-by-page explanations.
+5. For PDFs, first check extraction quality and visual risk. Flag image-heavy, formula-heavy, code-screenshot, low-text, or garbled pages.
+6. For assignments, map concepts before solving.
+7. After assignments, create a Reverse Card with concepts, mistakes, next-time first step, and interview-safe explanation.
+8. When I am tired or rushed, reduce scope to 3 retrieval prompts and 1 next tiny action.
 
 My current material/task is:
 <paste slides, notes, assignment, code description, or project folder summary>
@@ -79,13 +87,31 @@ Doubao may not treat these files as a plugin. Use them as knowledge/context:
 Recommended first message:
 
 ```text
-请使用我粘贴的 System Course Learning 工作流。中文解释，保留英文技术词。不要一开始直接总结；如果是复习，先让我闭卷检索。
+请使用我的 System Course Learning 工作流。中文解释，保留英文技术词。先声明当前模式；如果这是复习，不要一开始直接总结，先让我做 closed-book retrieval。
+```
+
+## PDF Upload Notes
+
+When uploading PDF slides to non-Codex tools, explicitly ask the assistant to separate extraction confidence from content understanding:
+
+```text
+Before explaining the PDF, make a risk-aware page map:
+Page -> extracted signal -> visual risk -> likely function -> action.
+
+Mark pages as:
+- Text-extracted
+- Visually inspected
+- Uncertain / needs screenshot
+
+Do not treat missing extracted text as an empty or unimportant slide.
 ```
 
 ## Best Practice
 
 - Upload fewer files per session when the task is small.
 - Use `templates.md` for output format.
+- Use `lecture-archetypes.md` when working with real lecture PDFs.
+- Use `bilingual-learning.md` when turning Chinese understanding into English answers.
 - Use `quality-checklist.md` to judge whether the answer is good.
 - Use `research-foundations.md` only when you need to explain why the workflow is designed this way.
 - Keep `real-use-log.md` local unless you want the AI to help you review weekly friction.

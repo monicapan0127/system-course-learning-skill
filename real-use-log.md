@@ -27,6 +27,19 @@ Next tiny action:
 
 ## Entries
 
+### 2026-05-13
+
+```text
+Course / task: Lecture 6
+Workflow used: Pre-class + slow full lecture watch
+Input type: 2-hour lecture video
+Useful output: Finished pre-study and completed the lecture after about 1.5 days
+Too heavy / too generic: Video length underestimated the real cognitive load
+Where I got stuck: Need a closed-book retrieval check to separate "watched" from "owned"
+Next template or rule change: Treat dense 2-hour lectures as a multi-session task, not a single block
+Next tiny action: Write a 5-minute closed-book retrieval card for Lecture 6
+```
+
 ### YYYY-MM-DD
 
 ```text
