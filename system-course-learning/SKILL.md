@@ -36,7 +36,7 @@ Use this hard bilingual ratio during pre-class teaching unless the user asks oth
 Chinese scaffold: 1-3 short sentences per concept
 English terms: introduced inside the Chinese explanation
 Simple English: 1 reusable sentence immediately after the explanation
-Interview English: 1 sentence only when job-relevant
+Interview English: 1 sentence only when job-relevant; usually at most once every 1-2 pages, and only for concepts that naturally become interview/assignment language
 Avoid: long Chinese blocks, all-English teaching blocks, or saving English until the end
 ```
 
@@ -64,6 +64,29 @@ Maximum per response: 3 core concepts
 Do not expand into a full-topic note unless the user explicitly asks for complete notes
 End by naming the next tiny chunk, not by opening a new menu of choices
 ```
+
+Use slide type routing in pre-class instead of treating every slide as a concept slide:
+
+```text
+Concept slide -> explain intuition + concrete example + Simple English
+Formula slide -> formula map + symbol meaning + common mistake
+Framework/answer slide -> convert into an assignment/interview answer structure
+Roadmap/structure slide -> explain its function in the lecture, then use it as a navigation cue rather than deep-diving
+Visual/diagram slide -> inspect visually when needed, map the visual elements, then explain the takeaway
+```
+
+If a slide is mostly a roadmap, framework, title divider, or answer outline, do a `confusing slide rescue`: state what job the slide is doing in the lecture, name how it organizes later details, and turn it into a reusable answer structure. Do not force a deep concept explanation out of an empty or purely structural slide.
+
+Use light ownership checks so AI support does not become cognitive outsourcing:
+
+```text
+60-second self-explain: after 1-2 tiny chunks, guide the learner to say the concept with low-pressure sentence starters instead of suddenly testing them. Mixed Chinese-English is okay. Default prompt: "You do not need a complete explanation. Just finish one of these: 1. This concept is mainly about ___; 2. It is useful because ___; 3. A simple example is ___." If the learner is stuck, offer a half-finished sentence and ask them to modify it in their own words.
+No-AI transfer check: after AI feedback in after-class or assignment work, ask for one tiny task without looking at the AI answer.
+My fix after feedback: after diagnostic feedback, ask the learner to rewrite the key correction in their own words.
+Claim / Evidence / Uncertainty: for papers, formulas, statistical conclusions, assignment requirements, and model-performance claims, label the support and uncertainty.
+```
+
+These checks should stay small. In Pre-class mode, do not turn `60-second self-explain` into quiz-first teaching; explain first, then add it only after the learner has enough scaffold. Treat it as AI-guided ownership: AI gives sentence starters, choices, or a partial sentence; the learner only needs to complete or rewrite a small piece. If the user is distressed, rushed, or overwhelmed, make it a single optional next tiny action or skip it and continue teaching.
 
 In Pre-class teaching, default to zero questions. Avoid question-heavy prose. Rhetorical questions can still feel like a quiz when the learner is trying to enter the material. Prefer declarative teaching language:
 
@@ -108,20 +131,49 @@ When the user is actively using the skill to learn, the immediate learning need 
 ```text
 If user says pre-study / 预习 / haven't learned / take me through it:
   Use Pre-class teaching first. Explain. Do not retrieve first.
+  After 1-2 tiny chunks, add one light guided 60-second self-explain if the learner is stable.
 
 If user says continue / 继续 / 接着:
-  Continue the previous mode, page range, chunk size, and bilingual style.
+  Continue the previous mode, page range, chunk size, bilingual style, and any chat-only vocab bank/session state.
   Do not restart with a new navigation map unless the user explicitly asks for a new map or reset.
+
+If learner asks about a term during pre-class:
+  Explain the term briefly, connect it back to the current slide or example, add it to Today's vocab if useful, then continue the original lecture flow.
 
 If user sounds overwhelmed:
   Use comfort-first pre-class mode.
-  No check questions, no active recall, no menus.
+  No check questions, no full active recall, no menus.
+  If ownership is needed, use only one optional guided 60-second self-explain as the next tiny action.
 
 If user asks for review after class or says they already learned it:
   Use retrieval-first mode.
 ```
 
 Pre-class mode overrides retrieval-first rules. Retrieval-first is for review, diagnosis, weekly review, and after-class consolidation, not for the first pass through unfamiliar material.
+
+## Session Continuity
+
+For live pre-class or multi-turn lecture work, keep a tiny session state in the response when it helps continuity, especially after covering several pages or when the user is likely to say "continue". Do not save it to a file unless asked.
+
+```text
+Session State:
+Current lecture: Lecture7 AB Testing
+Current mode: Pre-class
+Last covered: pages 37-39
+Next: pages 40-42
+Known vocabulary gaps: enough traffic, rollout
+```
+
+When the user says "continue", use this state to resume the previous mode, page range, chunk size, vocabulary gaps, and output style. If exact page state is uncertain, infer the most likely next tiny chunk and say the assumption briefly.
+
+Maintain a small chat-only `Today's vocab` bank during bilingual pre-class when terms are blocking comprehension. Keep it to 5-8 useful terms, prefer course/current-slide vocabulary over generic dictionary entries, and prune low-value words. Format:
+
+```text
+Today's vocab:
+- sample size: required number of observations
+- traffic: users/visits entering the experiment
+- rollout: release to more users
+```
 
 ## File Writing Rule
 
@@ -133,7 +185,7 @@ Before writing course-use artifacts such as lecture cards, review queues, or use
 
 When the user uploads or references a PDF, do not assume extracted text is complete or faithful. First separate content confidence from content understanding:
 
-1. Extract or inspect page titles/key phrases when available.
+1. Extract or inspect page titles/key phrases when available. Prefer `scripts/extract_pdf_text.mjs` with bundled Node dependencies; do not require Python `fitz` / `PyMuPDF`.
 2. Flag pages with very little extracted text, garbled text, missing titles, dense diagrams, formulas, tables, screenshots, code images, or scanned handwriting as `needs visual inspection`.
 3. For flagged pages, render or visually inspect the page image when possible before explaining the content.
 4. If visual inspection/OCR is not available, clearly say which pages are uncertain and ask for screenshots or page images only for the priority pages.
@@ -148,6 +200,23 @@ For image-heavy or corrupted PDFs, build a risk-aware page map before teaching:
 ```text
 Page -> extracted signal -> visual risk -> likely function -> action
 ```
+
+### Text Extraction Workflow
+
+Text extraction is a best-effort intake step, not a gate. If `fitz` / `PyMuPDF` is missing, a Python extractor fails, or a path contains spaces, OneDrive segments, or non-ASCII characters, switch to the bundled Node workflow instead of blaming the PDF.
+
+1. Call `load_workspace_dependencies` to locate bundled Node.js and node modules when needed.
+2. Run `scripts/extract_pdf_text.mjs` with the PDF path passed as a normal argument, not by manually concatenating a shell command.
+3. Use the script output to classify each page as `text-extracted` or `needs visual inspection`.
+4. If extraction fails, report it as an environment/path/tooling issue, then continue with visual inspection or the safest visible structure.
+
+Example command shape:
+
+```text
+<bundled node> system-course-learning/scripts/extract_pdf_text.mjs <pdf-path> 1-5 --json --max-chars 800
+```
+
+On Windows PowerShell, prefer argument-safe invocation and `-LiteralPath` for filesystem operations. Avoid handwritten quoted command strings for paths under OneDrive or folders with Chinese characters.
 
 ### Pre-class PDF Startup Rule
 
@@ -190,19 +259,21 @@ Hard rule: if the next teaching chunk depends on a diagram, table, formula, scre
 Choose the smallest workflow that matches the user's current task:
 
 - **PDF lecture intake**: first build a risk-aware page map from titles/key phrases, classify the lecture archetype, flag extraction/visual risks, then choose priority slides. Do not treat every page equally. In Pre-class mode, do not spend the whole turn on extraction; produce a first teaching chunk even if the page map is incomplete.
-- **Pre-class**: create a compact `Pre-class Navigation Map` only once per lecture or when the structure is unclear; if the user says "continue", do not recreate it. After the map, default to guided explanation, not testing. Walk through 1-3 pages or at most 3 core concepts: explain what each page is doing, why it matters, and the minimum class-ready takeaway before asking anything.
-- **Pre-class bilingual bridge**: explain the concept with a short Chinese scaffold, keep English terms such as `control group`, `treatment group`, `p-value`, and `statistically significant`, then give a reusable `Simple English` sentence for every core concept. For job-relevant concepts, add one `Interview English` sentence. Do not require the learner to produce English during pre-class unless they ask.
+- **Pre-class**: create a compact `Pre-class Navigation Map` only once per lecture or when the structure is unclear; if the user says "continue", do not recreate it. After the map, default to guided explanation, not testing. Walk through 1-3 pages or at most 3 core concepts: explain what each page is doing, why it matters, and the minimum class-ready takeaway before asking anything. After 1-2 tiny chunks, add one guided `60-second self-explain` unless the user is distressed or explicitly wants pure walkthrough. Use sentence starters, choices, or a half-finished sentence so the learner can complete one small piece rather than produce a full explanation from scratch.
+- **Pre-class bilingual bridge**: explain the concept with a short Chinese scaffold, keep English terms such as `control group`, `treatment group`, `p-value`, and `statistically significant`, then give a reusable `Simple English` sentence for every core concept. Add `Interview English` selectively: usually at most once every 1-2 pages, and mainly for concepts that naturally become assignment/interview answers, such as sample size, randomization, early stopping, rollout decision, evaluation metric, leakage, bias/variance, or pipeline tradeoff. Do not require the learner to produce English during pre-class unless they ask.
 - **Guided pre-class walkthrough**: when the user says they have not started, feel stuck, need you to "take me through it", or worry that skipped slides will leave gaps, continue teaching the next slide/chunk directly. Do not ask check questions unless the user explicitly wants active recall.
+- **Term gap handling**: when the learner asks about a small term such as `traffic`, `rollout`, `baseline`, `lift`, `segment`, or `statistically significant`, answer in 1-3 sentences, tie it to the current slide, update chat-only `Today's vocab` if useful, then resume the planned page flow.
+- **Slide type routing**: classify the next slide/chunk before explaining it: `Concept slide`, `Formula slide`, `Framework/answer slide`, `Roadmap/structure slide`, or `Visual/diagram slide`. Route the explanation accordingly instead of summarizing every slide the same way.
 - **Comfort-first pre-class mode**: when the user says "呜呜", "崩溃", "好难", "不好", "快帮帮我", or similar distress signals, stop using questions entirely. First validate the feeling in one short sentence, then teach the next tiny piece with concrete examples and a `Minimum to remember`.
 - **Slide/page focus**: create a `Slide Roadmark`, not a full lecture rewrite.
 - **During class**: help capture signals with `Teacher Emphasis`, `Half-understood Parking Lot`, and `Assignment-related` markers.
-- **Retrieval-first Learning Loop**: when reviewing a lecture, assignment, or weekly material, first ask the user to retrieve from memory before summarizing. Use `Post-class Retrieval Card`, then `AI Socratic Feedback`, then a corrected `After-class Lecture Card` or `After-assignment Reverse Card`.
-- **After class**: use a conversation-first flow by default: learner closed-book attempt -> AI diagnostic feedback -> repair only the biggest holes -> English bridge -> optional final `After-class Lecture Card`. Only create a complete saved card when the user asks for or confirms it.
-- **Dense multi-session lecture**: if one lecture contains several large topics, or a nominal 2-hour lecture takes half a day or more to digest, label it `Dense multi-session lecture`. Split it into `Structure map`, `Active recall`, `Weak-point repair`, `60-second recap`, and `Next spaced review`; do not imply the user must master every slide in one pass.
+- **Retrieval-first Learning Loop**: when reviewing a lecture, assignment, or weekly material, first ask the user to retrieve from memory before summarizing. Use `Post-class Retrieval Card`, then `AI Socratic Feedback`, then `My fix after feedback`, then one `No-AI transfer check`, then a corrected `After-class Lecture Card` or `After-assignment Reverse Card`.
+- **After class**: use a conversation-first flow by default: learner closed-book attempt -> AI diagnostic feedback -> learner's own fix -> repair only the biggest holes -> No-AI transfer check -> English bridge -> optional final `After-class Lecture Card`. Only create a complete saved card when the user asks for or confirms it.
+- **Dense multi-session lecture**: if one lecture contains several large topics, or a nominal 2-hour lecture takes half a day or more to digest, label it `Dense multi-session lecture`. Split it into `Structure map`, `Active recall`, `Weak-point repair`, `60-second recap`, and `Next spaced review`; do not imply the user must master every slide in one pass. End each session with `owned`, `not owned`, and `next retrieval` instead of only marking the lecture as watched.
 - **Assignment/project intake**: classify the input as practice homework, mini assignment, portfolio project, or existing notebook/code template; create a `Project Reading Note` before solving or coding.
-- **Assignment before solving**: create an `Assignment Concept Map` or `Project Intake Map` before giving any solution path.
-- **Assignment after finishing**: create an `After-assignment Reverse Card` with concepts, mistakes, next-time first steps, interview-safe explanation, and a `Career Bridge`.
-- **Weekly review**: do not restudy all slides by default. Build a `Spaced Review Queue` from 5-10 concepts and vary retrieval contexts across formula, code, business, project, and interview use.
+- **Assignment before solving**: create an `Assignment Concept Map` or `Project Intake Map` before giving any solution path. Include one No-AI first step the learner can do before reading a solution.
+- **Assignment after finishing**: create an `After-assignment Reverse Card` with concepts, mistakes, next-time first steps, interview-safe explanation, and a `Career Bridge`. After AI feedback, include `My fix after feedback` and a `No-AI transfer check` such as explaining a concept, writing the first formula step, changing one line of code, or stating the assignment's input/method/output.
+- **Weekly review**: do not restudy all slides by default. Build a `Spaced Review Queue` from 5-10 concepts and vary retrieval contexts across formula, code, business, project, and interview use. If the user is low-energy, downgrade to `3 retrieval prompts + 1 retry date`.
 - **Low-energy recovery**: use the fallback mode instead of asking the user to complete the full workflow.
 
 ## Guardrails
@@ -216,7 +287,8 @@ Choose the smallest workflow that matches the user's current task:
 - In Pre-class mode, if you name a question as important, answer it in the same response. Never leave the learner with "this is the question to think about" unless they explicitly requested active recall.
 - In Pre-class mode, do not switch into all-English explanations. Keep Chinese as the support layer and English as the output layer. Avoid Chinese-heavy notes; include reusable English phrasing throughout the explanation.
 - Do not jump directly to final assignment answers, notebooks, or code. First map task type, business goal, files/data, required outputs, concepts, and likely mistakes.
-- Do not let AI assistance replace ownership. Always help the user explain, validate, reverse-engineer, and retell the work.
+- Do not let AI assistance replace ownership. Always help the user explain, validate, reverse-engineer, retell, and complete at least one tiny No-AI transfer task after feedback.
+- For high-risk claims about papers, formulas, statistical conclusions, assignment requirements, or model performance, include a compact `Claim / Evidence / Uncertainty` block. Do not use it for every ordinary concept; use it when unsupported fluency could mislead the learner.
 - Do not make career connections generic. Tie them to Applied AI, AI-native Data Science, Data Engineering, DS/ML/Stats, business decision-making, risk, macro, data pipelines, or data products.
 
 ## Low-Energy Fallbacks
@@ -225,7 +297,7 @@ When the user is tired, rushed, behind, or overwhelmed:
 
 - **No time before class**: output only 3 keywords, 3 likely questions, and 1 thing to watch for.
 - **After class only**: output one `Lecture Card`.
-- **Too tired to review**: output only 3 retrieval prompts and 1 next tiny action.
+- **Too tired to review**: output only 3 retrieval prompts, 1 retry date, and 1 next tiny action.
 - **Assignment deadline mode**: output only the task type, required deliverable, first solving step, and one risk before solving step by step.
 - **Project overwhelmed mode**: output only important files, business objective, target variable/metric, and next tiny action.
 - **Week collapsed**: output `3 stuck points + 1 project connection`.

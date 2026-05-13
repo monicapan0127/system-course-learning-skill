@@ -8,7 +8,9 @@ Use this checklist to judge whether a System Course Learning output is actually 
 - Small enough to use: the output focuses on the few concepts that matter for class, assignment, project, or interview.
 - Concept mapped: important tasks are connected to input, method, output, evaluation, and likely mistake.
 - AI feedback is diagnostic: it identifies concept errors, logic gaps, missing assumptions, or misinterpretations.
-- Ownership preserved: AI does not replace the learner's explanation, validation, or retelling.
+- Ownership preserved: AI does not replace the learner's explanation, validation, retelling, or tiny No-AI transfer task.
+- Feedback closes the loop: after AI diagnostic feedback, the learner is prompted for `My fix after feedback`.
+- High-risk claims are grounded: papers, formulas, statistical conclusions, assignment requirements, and model-performance claims include `Claim / Evidence / Uncertainty` when needed.
 - Next tiny action exists: the user knows exactly what to do next.
 - Career bridge is natural: Applied AI / DS / DE links are included only when they fit.
 
@@ -18,6 +20,7 @@ Use this checklist to judge whether a System Course Learning output is actually 
 - For pre-class, it teaches in plain language before checking recall.
 - For pre-class, it does more than paraphrase slide headings or the table of contents.
 - For pre-class, it respects the chunk budget: 1-3 pages, 1 dense visual/formula/concept, or at most 3 core concepts.
+- For pre-class, after 1-2 tiny chunks it adds one light `60-second self-explain` unless the user is distressed or asked for pure walkthrough.
 - For pre-class, it uses the bilingual ratio: short Chinese scaffold, English terms inside the explanation, immediate `Simple English`, and `Interview English` only when useful.
 - For pre-class, it uses declarative explanation, not repeated rhetorical questions.
 - For pre-class, it asks zero questions unless the user explicitly requested active recall or quiz mode.
@@ -31,15 +34,19 @@ Use this checklist to judge whether a System Course Learning output is actually 
 - Job-relevant concepts include a short `Interview English` sentence without becoming all-English teaching.
 - It includes concrete examples and a `Minimum to remember` line for difficult concepts.
 - For after-class, it includes a `Post-class Retrieval Card` or retrieval-first `Lecture Card`.
+- For after-class, AI feedback is followed by `My fix after feedback` and one `No-AI transfer check`.
 - It has one visual, formula, code, business, or project transfer prompt.
 - It names one confusion to repair next.
+- For dense multi-session lectures, each session ends with `owned`, `not owned`, and `next retrieval`.
 
 ## Assignment Output Check
 
 - Before solving, it creates an `Assignment Concept Map` or `Project Reading Note`.
 - It does not jump to final answers unless the user is explicitly checking them.
+- Before showing solution path, it gives one No-AI first step.
 - It identifies likely mistakes before implementation.
 - After finishing, it creates a `Reverse Card`.
+- After AI feedback, it includes `My fix after feedback` and a tiny No-AI transfer task.
 - It includes an interview-safe explanation of what the user owned and validated.
 
 ## Weekly Review Check
@@ -47,12 +54,13 @@ Use this checklist to judge whether a System Course Learning output is actually 
 - It does not tell the user to reread all slides.
 - It selects 5-10 concepts for retrieval.
 - Each key concept has at least two retrieval contexts.
+- If the learner is low-energy, it downgrades to `3 retrieval prompts + 1 retry date`.
 - It chooses one concept to restudy and one concept to connect to project/interview.
 
 ## Low-Energy Check
 
 - It reduces scope immediately.
-- It outputs only `3 retrieval prompts + 1 next tiny action` when the user is tired or rushed.
+- It outputs only `3 retrieval prompts + 1 retry date + 1 next tiny action` when the user is tired or rushed.
 - It avoids scolding, catch-up guilt, and giant repair plans.
 
 ## Failure Signals
@@ -61,6 +69,7 @@ Use this checklist to judge whether a System Course Learning output is actually 
 - The pre-class output is mostly a table of contents or "this section will cover..." with no concept explanation.
 - The pre-class output restarts the navigation map when the user only said "continue".
 - The pre-class output tries to cover too many pages or too many concepts in one response.
+- The pre-class output continues for multiple chunks without any small self-explain or ownership checkpoint when the learner is stable.
 - The pre-class output contains many question marks or question lists that make the learner feel tested instead of guided.
 - The pre-class output asks a check question after the user has said they are overwhelmed, stuck, upset, or not being helped.
 - The pre-class output says a question is important but leaves it unanswered.
@@ -73,3 +82,6 @@ Use this checklist to judge whether a System Course Learning output is actually 
 - It creates more tasks than the user can do today.
 - It forces a career bridge that does not fit.
 - It hides uncertainty or makes the assignment feel solved before the user owns it.
+- It gives smooth claims about papers, formulas, statistics, assignment requirements, or model performance without evidence or uncertainty.
+- It gives AI feedback but never asks the learner to produce `My fix after feedback`.
+- It completes an after-class or assignment flow without a No-AI transfer check.
