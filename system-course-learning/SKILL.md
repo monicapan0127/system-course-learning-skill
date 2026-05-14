@@ -181,6 +181,61 @@ Default to producing learning outputs in the conversation. Only modify repositor
 
 Before writing course-use artifacts such as lecture cards, review queues, or use logs, confirm the target artifact if it is not already explicit. Skill maintenance requests, such as "implement this plan" or "update the skill", count as explicit permission to edit the relevant skill files.
 
+## Non-PDF File Intake Protocol
+
+When the user references a non-PDF course artifact, do not route it through PDF or lecture-page rules. First classify both the file type and the artifact role, then choose the smallest useful workflow.
+
+File type:
+
+```text
+.ipynb -> notebook / code template / completed analysis
+.html -> rendered Quarto, RMarkdown, Jupyter report, assignment output, or webpage
+.qmd / .Rmd / .md -> source report, notes, or assignment document
+.py / .R -> script or code template
+.csv / .xlsx / .tsv -> dataset only or supporting data
+```
+
+Artifact role:
+
+```text
+assignment prompt
+partial solution
+completed solution
+rendered report
+project notebook
+dataset only
+lecture handout / notes
+```
+
+Use OS-safe reads for paths under OneDrive, paths with spaces, and Chinese / non-ASCII path segments. On Windows PowerShell, prefer `-LiteralPath`. If Python path handling fails or garbles a path, retry with PowerShell-safe reading before asking the user to move or rename the file.
+
+For `.ipynb` files, inspect:
+
+- markdown headings and task/story structure
+- code cell flow: setup, data loading, cleaning, EDA, modeling, evaluation, packaging
+- outputs: printed metrics, tables, charts, saved figures, errors, warnings
+- reproducibility risks: local files, pickles, interactive downloads, missing dependencies, hard-coded API keys, hidden execution state
+- explanation quality: whether markdown connects code outputs to assignment/business conclusions
+
+For rendered `.html` files, inspect:
+
+- whether it was rendered from Quarto, RMarkdown, Jupyter, or is a normal webpage
+- headings, questions, code blocks, outputs, tables, formulas, figures, and conclusions
+- script/style/navigation noise after stripping
+- encoding corruption such as mojibake; note it without blocking review
+- whether the artifact is an assignment prompt, completed solution, lecture handout, or project report
+
+For completed non-PDF assignments, default to after-assignment review behavior rather than solving behavior. Use the user's wording to choose:
+
+```text
+review / 复盘 -> Completed Assignment Review + Reverse Card
+concept map -> Assignment Concept Map from the completed artifact
+check correctness / review answers -> Correctness Check Map
+polish / portfolio -> Notebook / Code Intake or Project Reading Note + packaging suggestions
+```
+
+If the user asks for `review`, `concept map`, or `check correctness`, inspect the artifact first instead of demanding a closed-book attempt. End with one tiny ownership check, such as rewriting the key conclusion, explaining the first formula step, or stating input / method / output.
+
 ## PDF Intake Safety Protocol
 
 When the user uploads or references a PDF, do not assume extracted text is complete or faithful. First separate content confidence from content understanding:
@@ -235,6 +290,34 @@ Start here:
 
 If the PDF path is garbled, text extraction is partial, or many slides are image-heavy, say that briefly and continue with the safest visible structure. Ask for screenshots only for specific priority pages that cannot be interpreted, and never before giving a useful starting explanation.
 
+### One-shot Chart / Visual Confirmation
+
+Use this when the user says they need to confirm graph details, chart details, figure details, visual details, or asks for a page to be confirmed "in one step".
+
+Do not stop at `uncertain` if a reasonable visual-confirmation route is available. Move through this order in the same turn:
+
+1. If the user supplied a screenshot or rendered page image, open it directly and visually inspect the chart/figure.
+2. If the user supplied a PDF path and page number, call `load_workspace_dependencies`, set `NODE_PATH` to the bundled node modules when needed, render only that page with `scripts/render_pdf_pages.mjs`, then open the PNG.
+3. If the user supplied a PDF but not the page number, use text extraction or visible page signals to find the most likely page, then render only the smallest candidate page range.
+4. If no PDF, screenshot, page image, or usable local path is available, say exactly what is missing and ask for only one of these: the PDF path + page number, or a screenshot of that page.
+
+After visual inspection, report chart details with confidence labels:
+
+```text
+Text-extracted:
+- visible title / axis labels / captions
+
+Visually inspected:
+- chart type
+- x-axis and y-axis meaning if readable
+- curve direction, peaks/troughs, comparisons, annotations, and any readable values
+
+Still uncertain:
+- only the details that remain unreadable after opening the image
+```
+
+For chart-heavy lecture slides, prefer this one-shot confirmation path before teaching the slide. If rendering fails because `pdfjs-dist` or `@napi-rs/canvas` cannot be resolved, retry with bundled `NODE_PATH` before asking the user for a screenshot.
+
 ### Visual Inspection Workflow
 
 When slides are image-heavy, have very little extracted text, or contain diagrams/tables/formulas/screenshots, visually inspect priority pages instead of guessing from text. Use the bundled workspace dependencies when available:
@@ -272,6 +355,8 @@ Choose the smallest workflow that matches the user's current task:
 - **Dense multi-session lecture**: if one lecture contains several large topics, or a nominal 2-hour lecture takes half a day or more to digest, label it `Dense multi-session lecture`. Split it into `Structure map`, `Active recall`, `Weak-point repair`, `60-second recap`, and `Next spaced review`; do not imply the user must master every slide in one pass. End each session with `owned`, `not owned`, and `next retrieval` instead of only marking the lecture as watched.
 - **Assignment/project intake**: classify the input as practice homework, mini assignment, portfolio project, or existing notebook/code template; create a `Project Reading Note` before solving or coding.
 - **Assignment before solving**: create an `Assignment Concept Map` or `Project Intake Map` before giving any solution path. Include one No-AI first step the learner can do before reading a solution.
+- **Completed assignment review**: when the artifact already contains answers, code outputs, conclusions, rendered report sections, or submitted-style prose, do not treat it as a blank assignment. Use `Completed Assignment Review`, `Assignment Concept Map`, or `Correctness Check Map` depending on the user's wording. Inspect the artifact first, then include one small No-AI transfer check at the end.
+- **Correctness check**: when checking completed work, distinguish `confirmed correct`, `likely correct but needs source/spec confirmation`, `incorrect or risky`, and `cannot verify from rendered artifact alone`. For statistics assignments, always check data type, test selection, hypotheses, one-sided vs two-sided logic, p-value comparison, conclusion in context, and association vs causation wording.
 - **Assignment after finishing**: create an `After-assignment Reverse Card` with concepts, mistakes, next-time first steps, interview-safe explanation, and a `Career Bridge`. After AI feedback, include `My fix after feedback` and a `No-AI transfer check` such as explaining a concept, writing the first formula step, changing one line of code, or stating the assignment's input/method/output.
 - **Weekly review**: do not restudy all slides by default. Build a `Spaced Review Queue` from 5-10 concepts and vary retrieval contexts across formula, code, business, project, and interview use. If the user is low-energy, downgrade to `3 retrieval prompts + 1 retry date`.
 - **Low-energy recovery**: use the fallback mode instead of asking the user to complete the full workflow.

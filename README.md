@@ -1,6 +1,6 @@
 # System Course Learning Skill
 
-Current version: **v1.3 System Course Learning Skill**
+Current version: **v1.4 System Course Learning Skill**
 
 This repository contains a personal Codex Skill for turning high-density Data Science, Machine Learning, Statistics, NLP, Deep Learning, programming, ETL, and Data Engineering coursework into sustainable learning assets and Applied AI career assets.
 
@@ -25,6 +25,20 @@ The skill is optimized for:
 - real iteration through `real-use-log.md`
 
 ## What's New
+
+### v1.4: Non-PDF Assignment Review and Visual Confirmation
+
+The skill now handles completed non-PDF coursework artifacts more deliberately instead of treating every file as a blank assignment or PDF-like lecture.
+
+v1.4 added:
+
+- non-PDF intake for `.ipynb`, rendered `.html`, `.qmd/.Rmd`, scripts, spreadsheets, and datasets
+- artifact-role detection for assignment prompts, partial solutions, completed solutions, rendered reports, project notebooks, and lecture notes
+- completed-assignment review, concept-map, and correctness-check routing
+- stronger notebook inspection across markdown, code, outputs, metrics, figures, errors, reproducibility risks, and portfolio polish
+- rendered HTML intake for Quarto, RMarkdown, and Jupyter reports, including script/style cleanup and encoding-risk notes
+- statistical correctness checks for test choice, hypotheses, one-sided vs two-sided logic, p-value interpretation, contextual conclusions, and association vs causation wording
+- one-shot chart / visual confirmation for graph-heavy slides and PDF pages when the user needs visual details confirmed in one step
 
 ### v1.3: Robust PDF Text Extraction
 
