@@ -45,6 +45,13 @@ Use this checklist to judge whether a System Course Learning output is actually 
 - It does not jump to final answers unless the user is explicitly checking them.
 - Before showing solution path, it gives one No-AI first step.
 - It identifies likely mistakes before implementation.
+- For non-PDF files, it classifies both file type and artifact role before choosing the workflow.
+- For `.ipynb`, it inspects outputs, metrics, errors, figures, reproducibility risks, and explanation quality, not only code source.
+- For rendered `.html`, it strips script/style/navigation noise, extracts headings/questions/code/outputs/conclusions, and notes encoding corruption without blocking review.
+- If the artifact appears completed, it defaults to review, concept map, or correctness checking rather than treating it as an unsolved assignment.
+- For `review`, `concept map`, or `check correctness`, it inspects the artifact first and ends with one tiny ownership check instead of requiring closed-book retrieval first.
+- For correctness checks, it labels status as `confirmed correct`, `likely correct but needs source/spec confirmation`, `incorrect or risky`, or `cannot verify from rendered artifact alone`.
+- For statistical assignments, it checks data type, test selection, hypotheses, one-sided vs two-sided logic, p-value comparison, conclusion in context, and association vs causation wording.
 - After finishing, it creates a `Reverse Card`.
 - After AI feedback, it includes `My fix after feedback` and a tiny No-AI transfer task.
 - It includes an interview-safe explanation of what the user owned and validated.
@@ -66,6 +73,10 @@ Use this checklist to judge whether a System Course Learning output is actually 
 ## Failure Signals
 
 - The output is mostly a summary.
+- It treats a completed `.html` report or `.ipynb` notebook as a blank assignment to solve.
+- It reads only notebook source cells and ignores outputs, errors, metrics, figures, or reproducibility risks.
+- It lets path encoding or mojibake stop the review instead of trying an OS-safe read fallback and marking uncertainty.
+- It checks a statistical answer without verifying test choice, hypotheses, p-value direction, and conclusion wording.
 - The pre-class output is mostly a table of contents or "this section will cover..." with no concept explanation.
 - The pre-class output restarts the navigation map when the user only said "continue".
 - The pre-class output tries to cover too many pages or too many concepts in one response.

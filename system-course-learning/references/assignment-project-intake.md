@@ -24,6 +24,46 @@ Classify the task before solving:
 
 If multiple types appear, choose the dominant type and mention the secondary type.
 
+## Non-PDF Artifact Classification
+
+For non-PDF coursework files, classify the file type and artifact role before choosing the workflow. This prevents completed work from being treated as a blank assignment.
+
+File type:
+
+```text
+.ipynb: notebook / code template / completed analysis
+.html: rendered Quarto, RMarkdown, Jupyter report, assignment output, or webpage
+.qmd / .Rmd / .md: source report, notes, or assignment document
+.py / .R: script or code template
+.csv / .xlsx / .tsv: dataset only or supporting data
+```
+
+Artifact role:
+
+```text
+assignment prompt
+partial solution
+completed solution
+rendered report
+project notebook
+dataset only
+lecture handout / notes
+```
+
+On Windows, prefer PowerShell `-LiteralPath` for OneDrive paths, spaces, and Chinese / non-ASCII path segments. If a Python reader fails or garbles a path, retry with PowerShell-safe reading before asking the user to rename the file.
+
+Routing:
+
+```text
+Blank prompt / instructions only -> Assignment Concept Map before solving
+Partial solution -> Notebook / Code Intake or Mini Assignment Intake, then next edit plan
+Completed solution / rendered report -> Completed Assignment Review or Correctness Check Map
+Project notebook -> Project Reading Note + Notebook / Code Intake
+Dataset only -> data overview and likely assignment/project questions
+```
+
+When the user says `review`, `复盘`, `concept map`, or `check correctness`, inspect the artifact first and then add one tiny No-AI transfer check at the end. Do not require closed-book retrieval before giving the review.
+
 ## Universal Intake Before Coding
 
 Always produce a short intake before writing code or final answers:
@@ -134,6 +174,17 @@ Only after this should implementation begin.
 
 Use when the user provides `.ipynb`, existing scripts, or a partially completed project.
 
+For `.ipynb`, inspect both source and outputs:
+
+- markdown headings and task/story structure
+- setup and package imports
+- data-loading paths and required files
+- cleaning / feature engineering / EDA / modeling / evaluation cells
+- outputs: metrics, tables, figures, errors, warnings
+- reproducibility risks: local file dependencies, pickles, interactive downloads, hard-coded API keys, missing package installs, hidden execution state
+- explanation quality: whether markdown interprets the outputs
+- portfolio polish: problem framing, result summary, limitations, next steps
+
 Output:
 
 ```text
@@ -143,7 +194,11 @@ Output:
 - Setup/data-loading cells:
 - EDA cells:
 - Modeling/evaluation cells:
+- Outputs / metrics / figures:
+- Errors / warnings:
 - Markdown/explanation quality:
+- Reproducibility risks:
+- Portfolio polish:
 - Missing sections:
 - Risky or unclear code:
 - What should not be changed:
@@ -153,6 +208,92 @@ Output:
 Guardrail:
 
 - Do not rewrite the notebook before understanding its current flow and deliverable.
+
+## Rendered HTML Intake
+
+Use when the user provides a rendered `.html` file from Quarto, RMarkdown, Jupyter, or a similar report workflow.
+
+First strip or ignore script/style/navigation noise, then extract:
+
+- title and major headings
+- assignment questions or report sections
+- code blocks and important outputs
+- formulas, tables, figures, and captions
+- conclusions and interpretation paragraphs
+- signs of encoding corruption / mojibake
+- whether the HTML is a prompt, partial solution, completed solution, lecture handout, or project report
+
+Output:
+
+```text
+## Rendered HTML Intake
+
+- Artifact type:
+- Artifact role:
+- Structure:
+- Questions / sections:
+- Code and outputs:
+- Conclusions:
+- Encoding / extraction issues:
+- Review route:
+- Next tiny action:
+```
+
+Guardrail:
+
+- If the rendered HTML appears to be a completed assignment, default to review, concept map, or correctness checking. Do not restart the assignment as if unsolved.
+
+## Completed Assignment Review
+
+Use when the artifact already contains answers, code outputs, conclusions, or submitted-style prose.
+
+Output:
+
+```text
+## Completed Assignment Review
+
+- What this assignment tested:
+- What was done correctly:
+- Concept gaps / likely misunderstandings:
+- Result interpretation quality:
+- Code / calculation risks:
+- Next-time first step:
+
+## Reverse Card
+- Core concept:
+- Input:
+- Method:
+- Output:
+- Likely mistake:
+- Simple English:
+
+## No-AI Transfer Check
+- Rewrite / explain / apply one tiny part without looking:
+```
+
+## Correctness Check Map
+
+Use when the user asks to check answers, review correctness, or verify a completed statistical / coding assignment.
+
+Output:
+
+```text
+## Correctness Check Map
+
+| Task | Claimed method | Expected method | Hypotheses correct? | Calculation / output consistent? | Interpretation correct? | Status | Risk / correction |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| | | | | | | confirmed correct / likely correct but needs source/spec confirmation / incorrect or risky / cannot verify from rendered artifact alone | |
+```
+
+For statistical assignments, always check:
+
+- data type
+- test selection
+- null and alternative hypotheses
+- one-sided vs two-sided logic
+- p-value comparison with alpha
+- conclusion in context
+- association vs causation wording
 
 ## Portfolio Packaging
 

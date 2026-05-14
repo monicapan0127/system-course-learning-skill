@@ -416,11 +416,90 @@ Uncertainty:
 - Data loading:
 - EDA:
 - Modeling / evaluation:
+- Outputs / metrics / figures:
+- Errors / warnings:
 - Markdown explanation:
+- Reproducibility risks:
+- Portfolio polish:
 - Missing sections:
 - Risky code:
 - Do not change:
 - Next edit plan:
+```
+
+## Rendered HTML Intake
+
+Use this for rendered Quarto, RMarkdown, Jupyter, or assignment report HTML files.
+
+```text
+## Rendered HTML Intake
+
+- Artifact type:
+- Artifact role:
+- Structure:
+- Questions / sections:
+- Code and outputs:
+- Conclusions:
+- Encoding / extraction issues:
+- Review route:
+- Next tiny action:
+```
+
+## Completed Assignment Review
+
+Use this when the artifact already contains answers, code outputs, conclusions, or submitted-style prose.
+
+```text
+## Completed Assignment Review
+
+### What this assignment tested
+-
+
+### What was done correctly
+-
+
+### Concept gaps / likely misunderstandings
+-
+
+### Result interpretation quality
+-
+
+### Code / calculation risks
+-
+
+### Reverse-card summary
+- Core concept:
+- Input:
+- Method:
+- Output:
+- Likely mistake:
+- Simple English:
+
+### No-AI Transfer Check
+- Rewrite / explain / apply one tiny part without looking:
+```
+
+## Correctness Check Map
+
+Use this when checking completed answers or a rendered/submitted solution.
+
+```text
+## Correctness Check Map
+
+| Task | Claimed method | Expected method | Hypotheses correct? | Calculation / output consistent? | Interpretation correct? | Status | Risk / correction |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| | | | | | | confirmed correct / likely correct but needs source/spec confirmation / incorrect or risky / cannot verify from rendered artifact alone | |
+
+### Statistical checks
+- Data type:
+- Test selection:
+- One-sided vs two-sided:
+- P-value logic:
+- Conclusion in context:
+- Association vs causation wording:
+
+### No-AI Transfer Check
+-
 ```
 
 ## After-assignment Reverse Card
