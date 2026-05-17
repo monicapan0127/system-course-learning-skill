@@ -1,7 +1,6 @@
 # System Course Learning Skill
 
 Current version: **v1.5 Course Progress Loop**
-
 This repository contains a personal Codex Skill for turning high-density Data Science, Machine Learning, Statistics, NLP, Deep Learning, programming, ETL, and Data Engineering coursework into sustainable learning assets and Applied AI career assets.
 
 The core learning chain is:
@@ -233,6 +232,31 @@ same day: wrap-up + course-progress
 ```
 
 Codex automation can be configured separately as `Course Review Reminder` to read `course-progress.md` on a schedule, usually Monday / Wednesday / Saturday evening if the learner does not keep the computer open in the morning, and post due review prompts in the thread. This is a Codex thread reminder, not guaranteed phone-level notification.
+
+## Version Workflow
+
+Use `main` and `origin/main` as the official released line. Do not edit directly on `main`; create a branch named like `codex/v1.6-short-description` for the next version.
+
+`VERSION` is the version-number source of truth. `README.md` mirrors it with the `Current version` line and the `What's New` section.
+
+Useful commands:
+
+```powershell
+tools/version-status.ps1
+tools/version-status.ps1 -Fetch
+tools/bump-version.ps1 -Version v1.6 -Title "Short Release Name"
+tools/sync-main.ps1
+tools/sync-main.ps1 -RebaseCurrent
+```
+
+Normal release loop:
+
+1. Run `tools/sync-main.ps1` so local `main` matches GitHub `origin/main`.
+2. Create or switch to `codex/vX.Y-short-description`.
+3. Run `tools/bump-version.ps1 -Version vX.Y -Title "Release Name"`.
+4. Commit on the version branch.
+5. Push the branch and open a PR.
+6. After the PR is merged, run `tools/sync-main.ps1` again.
 
 ## Quality Bar
 
