@@ -6,3 +6,4 @@ __pycache__/
 venv/
 *.pyc
 .tmp-visual-test/
+course-progress.md
