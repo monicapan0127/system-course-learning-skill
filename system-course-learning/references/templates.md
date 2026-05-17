@@ -6,6 +6,8 @@ Default style:
 - Concise Chinese for understanding, reflection, and recovery.
 - English for the output spine: technical keywords, reusable concept sentences, project language, README bullets, and interview phrasing.
 - Avoid Chinese-heavy notes. For each core concept, include a short `Simple English` line; for job-relevant concepts, include `Interview English`.
+- Use `clarity table first` when prose would hide the structure: categories, axes, error types, formula parts, model comparisons, tradeoffs, decision cases, process stages, graph areas, or debugging paths.
+- Keep clarity tables compact: usually 3-5 rows and 2-4 columns, followed by a short explanation and a reusable `Simple English` sentence.
 - Pre-class bilingual ratio: 1-3 short Chinese sentences per concept, English terms inside the explanation, then one reusable `Simple English` sentence immediately after.
 - Pre-class chunk budget: default to 1-3 pages, or 1 dense diagram/formula/concept; never exceed 3 core concepts in one response unless the user asks for complete notes.
 - For pre-class, prefer plain-language guided explanation over retrieval-first prompts or heading paraphrases.
@@ -119,6 +121,11 @@ Use this when the user asks you to take them through a lecture, says they have n
 This page is really saying:
 -
 
+Clarity table, if useful:
+| Case / concept | Plain meaning | Symbol / decision | Common mistake |
+| --- | --- | --- | --- |
+| | | | |
+
 If the slide lists questions, answer them:
 -
 
@@ -141,11 +148,48 @@ Minimum to remember:
 - Chinese:
 - English:
 
-60-second self-explain:
-- Without notes, say the concept in one sentence. Mixed Chinese-English is okay.
+60-second self-explain, if the learner is stable:
+- You do not need a complete explanation. Finish one: "This concept is mainly about ___"; "It is useful because ___"; "A simple example is ___."
 
 Next:
 I will continue with pages X-Y.
+```
+
+## Clarity Table Patterns
+
+Use one of these whenever it makes the concept easier to see.
+
+```text
+2x2 decision matrix
+
+| Real world | Decision / prediction A | Decision / prediction B |
+| --- | --- | --- |
+| Case A is true | correct / error | correct / error |
+| Case B is true | correct / error | correct / error |
+```
+
+```text
+Comparison table
+
+| Concept | Plain meaning | Symbol / formula | When to use / likely mistake |
+| --- | --- | --- | --- |
+| | | | |
+```
+
+```text
+Formula map
+
+| Symbol | Plain meaning | In this lecture | Common mistake |
+| --- | --- | --- | --- |
+| | | | |
+```
+
+```text
+Process map
+
+| Step | Input | Method | Output / risk |
+| --- | --- | --- | --- |
+| | | | |
 ```
 
 ## Continue Rule
@@ -263,29 +307,6 @@ Use this after the learner's attempt. Keep it short and diagnostic; do not turn 
 ### Try again
 - Explain it again without looking:
 - Apply it to one new case:
-
-### My fix after feedback
-- In my own words, the correction is:
-
-### No-AI transfer check
-- Do this without looking at the AI answer:
-```
-
-## Claim / Evidence / Uncertainty
-
-Use this only for high-risk claims: papers, formulas, statistical conclusions, assignment requirements, model-performance claims, or any point where a smooth explanation could hide uncertainty.
-
-```text
-## Claim / Evidence / Uncertainty
-
-Claim:
--
-
-Evidence:
--
-
-Uncertainty:
--
 ```
 
 ## Mistake / Confusion Diagnosis
@@ -325,12 +346,6 @@ Uncertainty:
 - Better explanation:
 - One retrieval question to retry:
 
-### 3. My fix after feedback
-- In my own words, the correction is:
-
-### 4. No-AI transfer check
-- Do this without looking at the AI answer:
-
 ## Career Bridge
 - Applied AI / DS / DE ability:
 - Project connection:
@@ -351,7 +366,6 @@ Uncertainty:
 1. First step:
 2. Slides to revisit:
 3. What the teacher likely wants to see:
-4. No-AI first step before reading a solution:
 ```
 
 ## Project Reading Note
@@ -544,12 +558,6 @@ Use this when checking completed answers or a rendered/submitted solution.
 - What I owned:
 - How I validated the result:
 
-### My fix after feedback
-- In my own words, the correction is:
-
-### No-AI transfer check
-- Do this without looking at the AI answer:
-
 ## Career Bridge
 - Portfolio bullet:
 - README sentence:
@@ -596,7 +604,7 @@ Use this when checking completed answers or a rendered/submitted solution.
 
 ## Spaced Review Queue
 
-Use this during weekly review. Do not reread all slides by default; retrieve first, then revisit only the weak source.
+Use this during weekly review triage. Do not reread all slides by default; retrieve first, then revisit only the weak source. Pull candidates from `course-progress.md` whenever available.
 
 ```text
 ## Spaced Review Queue
@@ -609,10 +617,213 @@ Use this during weekly review. Do not reread all slides by default; retrieve fir
 - 5-10 concepts to retrieve:
 - 1 concept to restudy:
 - 1 concept to connect to project/interview:
+```
 
-### Low-energy downgrade
-- 3 retrieval prompts:
-- Retry date:
+## Course Progress
+
+Use this for `System Course Learning Workflow/course-progress.md`. It is a long-term AI handoff and review schedule, not a full lecture notebook.
+
+```text
+# Course Progress
+
+## Current State
+- Last updated:
+- Current course focus:
+- Current mode:
+- Current source:
+- Energy / deadline context:
+
+## Latest Session
+- Date:
+- Material:
+- Session type:
+- Summary:
+- Learner-owned understanding:
+- Still shaky:
+- Next tiny action:
+
+## Covered Materials
+| Date | Material | Status | Output / notes |
+| --- | --- | --- | --- |
+| | | not started / previewed / learned / reviewed / assignment-linked | |
+
+## Active Concepts
+| Concept | Source | Understanding | Retrieval status | Priority | Next action |
+| --- | --- | --- | --- | --- | --- |
+| | | shaky / improving / solid | new / due / reviewed | low / normal / high | |
+
+## Review Schedule
+| Concept | Source | Stage | Due date | Status | Last reviewed | Retrieval prompt |
+| --- | --- | --- | --- | --- | --- | --- |
+| | | first retrieval / second retrieval / long-term review | | shaky / improving / solid | | |
+
+## Open Loops
+- Confusions:
+- Assignment links:
+- Concepts to restudy:
+- Files future AI should read first:
+
+## AI Handoff Notes
+- What not to repeat:
+- What the learner already owns:
+- What future AI should ask before explaining:
+```
+
+## Lecture Completion Summary
+
+Use this when the learner says `学完了`, `学完啦`, `终于学完`, `收尾`, `lecture complete`, or similar. The summary can be substantial, but it should support future retrieval instead of rewriting every slide.
+
+```text
+## Lecture / Session Completion
+
+### Material
+- Source:
+- Session type:
+- Scope completed:
+
+### Summary
+- Main problem this lecture/session solved:
+- Core methods / concepts:
+- Important examples or cases:
+
+### Learner-owned understanding
+1.
+2.
+3.
+
+### Still shaky
+1.
+2.
+3.
+
+### Reusable English
+1.
+2.
+3.
+
+### Course Progress Update
+- Add / update 3-8 active concepts:
+- Next tiny action:
+- Review Schedule rows to add:
+```
+
+## Review Schedule
+
+Use this in `course-progress.md` for daily spaced review scheduling.
+
+```text
+| Concept | Source | Stage | Due date | Status | Last reviewed | Retrieval prompt |
+| --- | --- | --- | --- | --- | --- | --- |
+| | lecture / assignment / project | first retrieval / second retrieval / long-term review / restudy | YYYY-MM-DD | new / shaky / improving / solid | YYYY-MM-DD or blank | one closed-book task |
+
+Scheduling defaults:
+- same day: wrap-up + course-progress
+- 1-2 days later: first retrieval
+- 5-7 days later: second retrieval
+- 2-3 weeks later: long-term review only for shaky / high-value concepts
+- solid twice: move out of active queue or long-term only
+- shaky twice: targeted restudy before another retrieval
+```
+
+## Completed Lecture Backfill
+
+Use this when a lecture is already completed but `course-progress.md` has no Active Concepts or Review Schedule rows. Keep the lecture completed; create diagnostic retrieval seeds instead of forcing a full relearn.
+
+```text
+## Completed Lecture Backfill
+
+### Source
+- Lecture:
+- Completed date:
+- Evidence source: lecture file / prior conversation / user table
+
+### Backfilled concepts
+| Concept | Source | Understanding | Retrieval status | Priority | Next action |
+| --- | --- | --- | --- | --- | --- |
+| | completed lecture | unknown | diagnostic due | normal / high | one closed-book diagnostic task |
+
+### Diagnostic Review Schedule
+| Concept | Source | Stage | Due date | Status | Last reviewed | Retrieval prompt |
+| --- | --- | --- | --- | --- | --- | --- |
+| | completed lecture | diagnostic retrieval | YYYY-MM-DD | new | | one closed-book prompt |
+
+### Rule
+- Do not mark the completed lecture incomplete.
+- Do not claim learner-specific shaky points until after the diagnostic retrieval.
+- After the learner says `复习好了`, update each concept to shaky / improving / solid.
+```
+
+## Review Reminder Output
+
+Use this for manual checks or Codex automation. Keep it short; do not summarize lectures.
+
+```text
+今天该复习 [N] 个概念：
+
+1. [Concept]
+- Source:
+- Task:
+- Status:
+
+2. [Concept]
+- Source:
+- Task:
+- Status:
+
+If there are too many due items:
+- Only show the highest-priority 2-4 concepts.
+- Say the rest will remain scheduled / be rescheduled.
+
+复习完后回复：复习好了
+```
+
+## Review Completion Update
+
+Use this when the learner says `复习好了`, `复习结束`, `复习完成`, or `复习完了`.
+
+```text
+## Review Completion Update
+
+Reviewed:
+| Concept | Previous stage | New status | Last reviewed | Next stage | Next due date |
+| --- | --- | --- | --- | --- | --- |
+| | | shaky / improving / solid | YYYY-MM-DD | second retrieval / long-term review / restudy / done | YYYY-MM-DD |
+
+If quality is unclear:
+- Ask one lightweight status question, or mark as `improving` and schedule the next retrieval.
+
+Next:
+- One tiny follow-up:
+```
+
+## Weekly Review Triage
+
+Use this only for `weekly review`, `周复盘`, `本周复习`, or a scheduled weekly triage. Weekly review selects and reschedules; it does not mean rereading everything learned that week.
+
+```text
+## Weekly Review Triage
+
+### Inputs from course-progress
+- Due concepts:
+- Overdue concepts:
+- Shaky concepts:
+- High-value concepts:
+
+### This week's retrieval set
+| Concept | Why selected | Retrieval context | Next date | Status |
+| --- | --- | --- | --- | --- |
+| | due / overdue / shaky / high-value | formula / code / business / project / interview | | |
+
+### One restudy hole
+-
+
+### One project / assignment / interview connection
+-
+
+### Queue changes
+- Move out of active queue:
+- Keep active:
+- Reschedule:
 ```
 
 ## Low-Energy Fallbacks
@@ -622,7 +833,6 @@ Use this during weekly review. Do not reread all slides by default; retrieve fir
 
 - Topic:
 - 3 retrieval prompts:
-- Retry date:
 - Biggest confusion:
 - Assignment/project connection:
 - Next tiny action:

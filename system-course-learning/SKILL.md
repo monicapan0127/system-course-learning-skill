@@ -13,6 +13,7 @@ Use this skill to convert course and project input into the chains:
 Course -> Concept -> Assignment -> Project -> Interview
 Course -> Concept -> Retrieval -> AI Feedback -> Assignment -> Reverse Card -> Spaced Review -> Project/Interview
 Instruction -> Task Map -> Data Map -> Analysis Plan -> Deliverable -> Portfolio
+Course -> Concept -> Review Schedule -> Reminder -> Retrieval -> Status Update
 ```
 
 Default to bilingual learning: use concise Chinese to make the concept understandable, but keep the output spine in English. Technical terms, reusable answers, assignment phrasing, README bullets, and interview phrasing should appear in English early, not only at the end.
@@ -45,6 +46,7 @@ For Pre-class teaching, use plain-language walkthrough style rather than table-o
 ```text
 Page X: topic
 This page is really saying...
+Clarity table, if the concept has categories / tradeoffs / decision cases:
 Plain-language explanation:
 Concrete example:
 Simple English:
@@ -54,6 +56,22 @@ Minimum to remember:
 ```
 
 Avoid outputs that only restate headings such as "first concept, then application, then interview". A useful pre-class explanation should make the learner understand the concept without needing to inspect the slide alone.
+
+Use a `clarity table first` rule for concepts that become confusing in prose. If a concept has categories, axes, cases, tradeoffs, error types, decision outcomes, formula components, model comparisons, pipeline stages, or "when X vs when Y" logic, include a compact table before or immediately after the plain-language explanation. The table should make the hidden structure visible, not decorate the answer.
+
+Common table shapes:
+
+```text
+2x2 decision matrix: truth vs decision, prediction vs actual, condition vs action
+Comparison table: concept A vs concept B vs concept C
+Formula map: symbol -> plain meaning -> where it appears -> common mistake
+Process table: step -> input -> method -> output -> risk
+Graph/diagram map: area/line/node -> where on the visual -> meaning
+```
+
+For statistics and ML concepts, default to a table when explaining items such as Type I/II error, alpha/beta/power, p-value vs alpha, precision/recall, bias/variance, train/test/validation, regularization choices, and confusion-matrix metrics. For programming, ETL, and data engineering, default to a table for API/dataflow stages, schema transformations, joins, errors, and debugging paths.
+
+Keep tables small: usually 3-5 rows and 2-4 columns. After the table, add 1-3 short Chinese sentences that explain the table's point, then a reusable `Simple English` sentence. Do not replace explanation with a table alone.
 
 Use a strict pre-class chunk budget:
 
@@ -119,37 +137,10 @@ Interviews test it because...
 At the start of each new learning task, briefly orient the user before doing the work:
 
 - Say what this skill can help with in 1-2 short sentences only when it is genuinely useful. Do not recite the whole capability list during a live learning task.
-- Declare the current mode, such as `Pre-class mode`, `After-class mode`, `Assignment Concept Map mode`, `Project Intake mode`, `Weekly Review mode`, or `Low-energy recovery mode`.
+- Declare the current mode, such as `Pre-class mode`, `Lecture Completion Wrap-up mode`, `Course Progress Handoff mode`, `Review Completion Update mode`, `After-class mode`, `Assignment Concept Map mode`, `Project Intake mode`, `Weekly Review mode`, `Review Reminder mode`, or `Low-energy recovery mode`.
 - State the default output destination: chat-only unless the user explicitly asks to save, write, generate a file, or record to a log.
 - Do not create long cards, logs, or files before the user has confirmed that they want a saved artifact.
 - When the user says "继续", "接着", "讲给我听", "我还没学", "预习", or similar live-use phrases, skip the capability overview and continue the learning flow directly.
-
-## Use-Time Priority Rules
-
-When the user is actively using the skill to learn, the immediate learning need beats the generic workflow:
-
-```text
-If user says pre-study / 预习 / haven't learned / take me through it:
-  Use Pre-class teaching first. Explain. Do not retrieve first.
-  After 1-2 tiny chunks, add one light guided 60-second self-explain if the learner is stable.
-
-If user says continue / 继续 / 接着:
-  Continue the previous mode, page range, chunk size, bilingual style, and any chat-only vocab bank/session state.
-  Do not restart with a new navigation map unless the user explicitly asks for a new map or reset.
-
-If learner asks about a term during pre-class:
-  Explain the term briefly, connect it back to the current slide or example, add it to Today's vocab if useful, then continue the original lecture flow.
-
-If user sounds overwhelmed:
-  Use comfort-first pre-class mode.
-  No check questions, no full active recall, no menus.
-  If ownership is needed, use only one optional guided 60-second self-explain as the next tiny action.
-
-If user asks for review after class or says they already learned it:
-  Use retrieval-first mode.
-```
-
-Pre-class mode overrides retrieval-first rules. Retrieval-first is for review, diagnosis, weekly review, and after-class consolidation, not for the first pass through unfamiliar material.
 
 ## Session Continuity
 
@@ -175,9 +166,63 @@ Today's vocab:
 - rollout: release to more users
 ```
 
+## Use-Time Priority Rules
+
+When the user is actively using the skill to learn, the immediate learning need beats the generic workflow:
+
+```text
+If user says pre-study / 预习 / haven't learned / take me through it:
+  Use Pre-class teaching first. Explain. Do not retrieve first.
+  After 1-2 tiny chunks, add one light guided 60-second self-explain if the learner is stable.
+
+If user says continue / 继续 / 接着:
+  Continue the previous mode, page range, chunk size, bilingual style, and any chat-only vocab bank/session state.
+  Do not restart with a new navigation map unless the user explicitly asks for a new map or reset.
+
+If learner asks about a term during pre-class:
+  Explain the term briefly, connect it back to the current slide or example, add it to Today's vocab if useful, then continue the original lecture flow.
+
+If user sounds overwhelmed:
+  Use comfort-first pre-class mode.
+  No check questions, no full active recall, no menus.
+  If ownership is needed, use only one optional guided 60-second self-explain as the next tiny action.
+
+If user says 学完了 / lecture complete / 终于学完 / 有什么感想 / 总结一下我学会了什么 / 收尾 / wrap up after completing a full lecture or long walkthrough:
+  Use Lecture Completion Wrap-up mode.
+  Prioritize consolidation, a useful lecture/session summary, `course-progress.md` handoff, and next retrieval scheduling over reteaching, restarting the lecture map, or defaulting to Weekly Review.
+  Update `course-progress.md` by default with 3-8 key concepts, learner-owned understanding, shaky points, next tiny action, and Review Schedule rows.
+  If the completed session was a full lecture or dense long walkthrough, optionally create a dated `lecture-review-YYYY-MM-DD-[topic].md` or `session-review-YYYY-MM-DD-[topic].md`; do not call this Weekly Review unless the user asks for weekly review.
+  If the user explicitly asks for spaced review, weekly planning, or "做weekly review", use Weekly Review mode instead.
+
+If user says 复习好了 / 复习结束 / 复习完成 / 复习完了:
+  Use Review Completion Update mode.
+  Update due concepts in `course-progress.md`: mark Last reviewed, update Status, advance Stage, and schedule the next retrieval.
+  If retrieval quality is unclear, ask one lightweight status question or default to `improving`; do not force a long quiz.
+
+If user says 做 weekly review / 周复盘 / 本周复习:
+  Use Weekly Review mode as triage.
+  Read active, due, shaky, and high-value concepts from `course-progress.md`; generate a dated weekly review only for this stage-level review.
+  Select 5-10 concepts, one restudy hole, and one natural assignment/project/interview connection. Do not restudy all slides.
+
+If a lecture is already marked completed in `course-progress.md` but has no Active Concepts or Review Schedule rows:
+  Use Completed Lecture Backfill mode.
+  Do not mark the lecture incomplete, do not force a full relearn, and do not invent learner-specific shaky points.
+  Extract 3-8 key concepts from the lecture file, prior conversation, or course title; mark understanding as `unknown` and retrieval status as `diagnostic due`.
+  Schedule diagnostic retrieval prompts first. After the learner says `复习好了`, update each concept to shaky / improving / solid.
+
+If user asks for review after class or says they already learned it:
+  Use retrieval-first mode.
+```
+
+Pre-class mode overrides retrieval-first rules. Retrieval-first is for review, diagnosis, weekly review, and after-class consolidation, not for the first pass through unfamiliar material.
+
 ## File Writing Rule
 
 Default to producing learning outputs in the conversation. Only modify repository files when the user explicitly asks to save, write, generate a file, update a skill/reference/template, or record to `real-use-log.md`.
+
+Exception: when the user says `学完了`, `学完啦`, `终于学完`, or `收尾` after a learning session, treat that as permission to create or update `course-progress.md` and, when useful, a dated `lecture-review-YYYY-MM-DD-[topic].md` or `session-review-YYYY-MM-DD-[topic].md`. When the user says `复习好了`, `复习结束`, `复习完成`, or `复习完了`, treat that as permission to update the Review Schedule in `course-progress.md`.
+
+Keep personal progress data outside the reusable skill package by default. The standard project-level target is `System Course Learning Workflow/course-progress.md`; do not store the learner's private progress inside `system-course-learning/`.
 
 Before writing course-use artifacts such as lecture cards, review queues, or use logs, confirm the target artifact if it is not already explicit. Skill maintenance requests, such as "implement this plan" or "update the skill", count as explicit permission to edit the relevant skill files.
 
@@ -239,6 +284,22 @@ If the user asks for `review`, `concept map`, or `check correctness`, inspect th
 ## PDF Intake Safety Protocol
 
 When the user uploads or references a PDF, do not assume extracted text is complete or faithful. First separate content confidence from content understanding:
+
+### First-Pass PDF Orientation
+
+Before teaching or summarizing a PDF, first turn it into a learning map. Start with the table of contents, section headings, page titles, abstracts/summaries, visible diagrams, formulas, tables, and repeated keywords. The goal is not to understand every detail yet; the goal is to identify the document's structure, likely purpose, and priority regions.
+
+Default first-pass questions to answer internally:
+
+```text
+What type of PDF is this: lecture, reading, assignment spec, project instruction, paper, or reference notes?
+What is the top-level structure: modules, chapters, concepts, methods, cases, or tasks?
+Which pages are roadmap/structure, core concept, formula, visual/diagram, framework/answer, or deliverable instruction?
+Which pages are likely important for class, assignment, project, interview, or spaced review?
+Which pages look risky because extraction may miss diagrams, formulas, screenshots, tables, code images, or scanned text?
+```
+
+Use this orientation to create a compact `PDF Learning Map` or `Pre-class Navigation Map` before deep explanation when the structure is unclear. Do not page-by-page summarize by default. First build the map, then deepen only the parts that matter for the learner's immediate mode.
 
 1. Extract or inspect page titles/key phrases when available. Prefer `scripts/extract_pdf_text.mjs` with bundled Node dependencies; do not require Python `fitz` / `PyMuPDF`.
 2. Flag pages with very little extracted text, garbled text, missing titles, dense diagrams, formulas, tables, screenshots, code images, or scanned handwriting as `needs visual inspection`.
@@ -352,13 +413,18 @@ Choose the smallest workflow that matches the user's current task:
 - **During class**: help capture signals with `Teacher Emphasis`, `Half-understood Parking Lot`, and `Assignment-related` markers.
 - **Retrieval-first Learning Loop**: when reviewing a lecture, assignment, or weekly material, first ask the user to retrieve from memory before summarizing. Use `Post-class Retrieval Card`, then `AI Socratic Feedback`, then `My fix after feedback`, then one `No-AI transfer check`, then a corrected `After-class Lecture Card` or `After-assignment Reverse Card`.
 - **After class**: use a conversation-first flow by default: learner closed-book attempt -> AI diagnostic feedback -> learner's own fix -> repair only the biggest holes -> No-AI transfer check -> English bridge -> optional final `After-class Lecture Card`. Only create a complete saved card when the user asks for or confirms it.
+- **Lecture Completion Wrap-up / Course Progress Handoff**: when the learner has completed a full lecture or long multi-turn walkthrough and says `学完了`, `学完啦`, `lecture complete`, `终于学完`, `有什么感想`, `总结一下我学会了什么`, `收尾`, `wrap up`, or similar, produce a useful lecture/session summary instead of restarting the lecture map, reteaching the full lecture, or defaulting to `Weekly Review`. Include what the learner now owns, what is still shaky, 3-8 reusable English sentences from the lecture, one natural DS / Applied AI / career connection if it fits, and one tiny next review action. Then update `course-progress.md` with current state, latest session, active concepts, open loops, and Review Schedule rows. Add at most 3-8 key concepts per session to avoid queue overload. If the user asks `有什么感想`, include a brief human-feeling reflection, but anchor it in learning consolidation. If the user explicitly asks for spaced review or weekly planning, use `Weekly Review` instead.
+- **Review Schedule**: schedule active concepts with a practical spacing pattern: same-day wrap-up, first retrieval in 1-2 days, second retrieval in 5-7 days, and long-term review in 2-3 weeks only for shaky or high-value concepts. Avoid giving every concept the same mechanical interval. If a concept is `solid` twice, move it out of the active queue or into long-term review. If a concept is `shaky` twice, downgrade it to a targeted restudy item instead of only testing it again.
+- **Completed Lecture Backfill**: when completed lectures predate `course-progress.md` or lack key concepts, keep the lecture status as completed and create a diagnostic retrieval seed. Extract 3-8 concepts, set understanding to `unknown`, retrieval status to `diagnostic due`, and schedule a first diagnostic retrieval. Do not claim the learner is shaky until the diagnostic retrieval shows it. This is for historical lectures, not a normal new-session flow.
+- **Review Reminder**: when checking due reviews manually or through automation, read `course-progress.md`, select concepts where `Due date <= today` and status is not solid/done, and output at most 2-4 active-retrieval prompts. Prioritize overdue, shaky, high-value, first retrieval, then second retrieval. Do not summarize lectures or reteach by default. End with `复习完后回复：复习好了`.
+- **Review Completion Update**: when the learner says `复习好了`, `复习结束`, `复习完成`, or `复习完了`, update `course-progress.md` by marking due concepts reviewed, recording `Last reviewed`, setting status to `shaky`, `improving`, or `solid`, and scheduling the next retrieval. If quality is unknown, ask one lightweight status question or default to `improving`.
 - **Dense multi-session lecture**: if one lecture contains several large topics, or a nominal 2-hour lecture takes half a day or more to digest, label it `Dense multi-session lecture`. Split it into `Structure map`, `Active recall`, `Weak-point repair`, `60-second recap`, and `Next spaced review`; do not imply the user must master every slide in one pass. End each session with `owned`, `not owned`, and `next retrieval` instead of only marking the lecture as watched.
 - **Assignment/project intake**: classify the input as practice homework, mini assignment, portfolio project, or existing notebook/code template; create a `Project Reading Note` before solving or coding.
 - **Assignment before solving**: create an `Assignment Concept Map` or `Project Intake Map` before giving any solution path. Include one No-AI first step the learner can do before reading a solution.
 - **Completed assignment review**: when the artifact already contains answers, code outputs, conclusions, rendered report sections, or submitted-style prose, do not treat it as a blank assignment. Use `Completed Assignment Review`, `Assignment Concept Map`, or `Correctness Check Map` depending on the user's wording. Inspect the artifact first, then include one small No-AI transfer check at the end.
 - **Correctness check**: when checking completed work, distinguish `confirmed correct`, `likely correct but needs source/spec confirmation`, `incorrect or risky`, and `cannot verify from rendered artifact alone`. For statistics assignments, always check data type, test selection, hypotheses, one-sided vs two-sided logic, p-value comparison, conclusion in context, and association vs causation wording.
 - **Assignment after finishing**: create an `After-assignment Reverse Card` with concepts, mistakes, next-time first steps, interview-safe explanation, and a `Career Bridge`. After AI feedback, include `My fix after feedback` and a `No-AI transfer check` such as explaining a concept, writing the first formula step, changing one line of code, or stating the assignment's input/method/output.
-- **Weekly review**: do not restudy all slides by default. Build a `Spaced Review Queue` from 5-10 concepts and vary retrieval contexts across formula, code, business, project, and interview use. If the user is low-energy, downgrade to `3 retrieval prompts + 1 retry date`.
+- **Weekly review**: treat weekly review as triage, not restudy-all. Read active, due, shaky, and high-value concepts from `course-progress.md`; build or update a `Spaced Review Queue` from 5-10 concepts and vary retrieval contexts across formula, code, business, project, and interview use. Choose one restudy hole, one natural assignment/project/interview connection, and updated next dates. If the user is low-energy, downgrade to `3 retrieval prompts + 1 retry date`.
 - **Low-energy recovery**: use the fallback mode instead of asking the user to complete the full workflow.
 
 ## Guardrails
@@ -383,6 +449,7 @@ When the user is tired, rushed, behind, or overwhelmed:
 - **No time before class**: output only 3 keywords, 3 likely questions, and 1 thing to watch for.
 - **After class only**: output one `Lecture Card`.
 - **Too tired to review**: output only 3 retrieval prompts, 1 retry date, and 1 next tiny action.
+- **Too many due reviews**: output only 1-3 retrieval prompts, reschedule the remaining due items, and preserve the Review Schedule instead of creating guilt or a giant catch-up list.
 - **Assignment deadline mode**: output only the task type, required deliverable, first solving step, and one risk before solving step by step.
 - **Project overwhelmed mode**: output only important files, business objective, target variable/metric, and next tiny action.
 - **Week collapsed**: output `3 stuck points + 1 project connection`.
@@ -397,7 +464,7 @@ Load these only when needed:
 - `references/lecture-archetypes.md`: lecture type classification and priority-slide heuristics for real PDFs.
 - `references/bilingual-learning.md`: Chinese-understanding to English-output bridge, answer feedback, and retell practice.
 - `references/assignment-project-intake.md`: assignment, instruction, project folder, and notebook intake workflows before coding.
-- `references/templates.md`: fixed output formats for class, assignment, weekly review, and low-energy modes.
+- `references/templates.md`: fixed output formats for class, assignment, course progress handoff, review reminders, weekly review, and low-energy modes.
 - `references/career-bridge.md`: rules for connecting coursework to Applied AI projects, portfolio bullets, and interview language.
 - `references/examples.md`: Bagging example and style calibration.
 - `references/golden-examples/lecture7-ab-testing-preclass.md`: ideal Lecture 7 A/B Testing pre-class walkthrough calibrated for plain-language teaching, zero-question mode, concise Chinese support, and reusable English output.

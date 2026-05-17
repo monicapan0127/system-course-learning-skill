@@ -19,8 +19,10 @@ Use this checklist to judge whether a System Course Learning output is actually 
 - It avoids a long page-by-page rewrite.
 - For pre-class, it teaches in plain language before checking recall.
 - For pre-class, it does more than paraphrase slide headings or the table of contents.
+- For pre-class, confusing structured concepts use a compact clarity table before or alongside prose.
+- For Type I/II error, alpha/beta/power, confusion matrices, metric comparisons, formula components, model tradeoffs, or process stages, it uses a table/matrix unless the concept is truly trivial.
+- Tables are explanatory, not decorative: each table is followed by a short plain-language explanation and `Simple English`.
 - For pre-class, it respects the chunk budget: 1-3 pages, 1 dense visual/formula/concept, or at most 3 core concepts.
-- For pre-class, after 1-2 tiny chunks it adds one light `60-second self-explain` unless the user is distressed or asked for pure walkthrough.
 - For pre-class, it uses the bilingual ratio: short Chinese scaffold, English terms inside the explanation, immediate `Simple English`, and `Interview English` only when useful.
 - For pre-class, it uses declarative explanation, not repeated rhetorical questions.
 - For pre-class, it asks zero questions unless the user explicitly requested active recall or quiz mode.
@@ -37,13 +39,12 @@ Use this checklist to judge whether a System Course Learning output is actually 
 - For after-class, AI feedback is followed by `My fix after feedback` and one `No-AI transfer check`.
 - It has one visual, formula, code, business, or project transfer prompt.
 - It names one confusion to repair next.
-- For dense multi-session lectures, each session ends with `owned`, `not owned`, and `next retrieval`.
 
 ## Assignment Output Check
 
 - Before solving, it creates an `Assignment Concept Map` or `Project Reading Note`.
 - It does not jump to final answers unless the user is explicitly checking them.
-- Before showing solution path, it gives one No-AI first step.
+- Before showing a solution path, it gives one No-AI first step.
 - It identifies likely mistakes before implementation.
 - For non-PDF files, it classifies both file type and artifact role before choosing the workflow.
 - For `.ipynb`, it inspects outputs, metrics, errors, figures, reproducibility risks, and explanation quality, not only code source.
@@ -58,16 +59,49 @@ Use this checklist to judge whether a System Course Learning output is actually 
 
 ## Weekly Review Check
 
-- It does not tell the user to reread all slides.
-- It selects 5-10 concepts for retrieval.
+- It treats weekly review as triage, not rereading or restudying all slides.
+- It reads from `course-progress.md` when available.
+- It selects 5-10 due, overdue, shaky, or high-value concepts for retrieval.
 - Each key concept has at least two retrieval contexts.
 - If the learner is low-energy, it downgrades to `3 retrieval prompts + 1 retry date`.
-- It chooses one concept to restudy and one concept to connect to project/interview.
+- It chooses one main restudy hole and one natural concept to connect to assignment/project/interview.
+- It updates or proposes next review dates.
+- It moves consistently solid concepts out of the active queue or into long-term review.
+
+## Course Progress Check
+
+- It lets a future AI continue without guessing the current lecture, mode, source, and next step.
+- It records `Latest Session`, `Covered Materials`, `Active Concepts`, `Review Schedule`, `Open Loops`, and `AI Handoff Notes`.
+- It includes learner-owned understanding, not only an AI-generated summary.
+- It names shaky points and one next tiny action.
+- It keeps lecture summaries useful for retrieval instead of rewriting every slide.
+- It adds or updates only a small number of key concepts per session, usually 3-8.
+- It keeps personal progress in `course-progress.md`, outside the reusable skill package.
+- For already-completed lectures without prior concepts, it uses Completed Lecture Backfill: keep status completed, mark understanding as unknown, and schedule diagnostic retrieval before claiming shaky points.
+
+## Review Schedule Check
+
+- Each active concept has a stage: first retrieval, second retrieval, long-term review, restudy, or done.
+- Each active concept has a due date and one closed-book retrieval prompt.
+- Status is explicit: new, shaky, improving, solid, or done.
+- The schedule uses practical spacing: same-day wrap-up, 1-2 day retrieval, 5-7 day retrieval, and 2-3 week review only for shaky or high-value concepts.
+- It avoids giving every concept a mechanical identical interval when concept priority or status differs.
+- Concepts that are solid twice leave the active queue or move to long-term review.
+- Concepts that are shaky twice become targeted restudy items before another retrieval.
+
+## Reminder Load Check
+
+- A review reminder shows at most 2-4 concepts.
+- It prioritizes overdue, shaky, high-value, first retrieval, then second retrieval.
+- It gives active-retrieval prompts, not long explanations or lecture summaries.
+- It ends with the short completion cue: `复习完后回复：复习好了`.
+- If too many concepts are due, it reschedules the rest instead of creating a giant catch-up list.
+- If no concepts are due, it says so and optionally names the next upcoming review date.
 
 ## Low-Energy Check
 
 - It reduces scope immediately.
-- It outputs only `3 retrieval prompts + 1 retry date + 1 next tiny action` when the user is tired or rushed.
+- It outputs only `3 retrieval prompts + 1 next tiny action` when the user is tired or rushed.
 - It avoids scolding, catch-up guilt, and giant repair plans.
 
 ## Failure Signals
@@ -80,7 +114,8 @@ Use this checklist to judge whether a System Course Learning output is actually 
 - The pre-class output is mostly a table of contents or "this section will cover..." with no concept explanation.
 - The pre-class output restarts the navigation map when the user only said "continue".
 - The pre-class output tries to cover too many pages or too many concepts in one response.
-- The pre-class output continues for multiple chunks without any small self-explain or ownership checkpoint when the learner is stable.
+- The output explains a matrix-like or comparison-heavy concept entirely in prose when a small table would make it clear.
+- The output includes a table but no explanation of how to read it.
 - The pre-class output contains many question marks or question lists that make the learner feel tested instead of guided.
 - The pre-class output asks a check question after the user has said they are overwhelmed, stuck, upset, or not being helped.
 - The pre-class output says a question is important but leaves it unanswered.
